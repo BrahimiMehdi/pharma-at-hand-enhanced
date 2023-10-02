@@ -1,4 +1,3 @@
-import RootLayout from "./(home)/layout";
 export default async function NotFound() {
   
   return (

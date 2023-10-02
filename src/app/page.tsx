@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { getYears } from "@/components/queries";
-import { GraduationCap } from "lucide-react";
+import { ArrowRightCircle, GraduationCap } from "lucide-react";
 export default async function Home() {
   
   const years = await getYears()
@@ -26,20 +26,17 @@ export default async function Home() {
         <h3 className="text-2xl font-bold">Choose your year</h3>
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
           {years?.map((year, index) => (
-            <div
+            <Link
+            href={`/years/${year.slug}`}
               key={index}
-              className="border shadow-sm hover:shadow-muted transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-8 pb-3 flex flex-col gap-y-1"
+              className="border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-8  pb-10 flex flex-col gap-y-1"
             >
+              <div className="w-full flex items-center justify-between">
               <GraduationCap strokeWidth={1.2}  className="w-12 mr-1 h-12" />
+              <ArrowRightCircle  strokeWidth={1.2} className="w-6 mr-1 h-6" />
+              </div>
               <h2 className="font-bold mt-2 text-xl">{year.title}</h2>
-              <Link
-                className={buttonVariants({ variant: "link",size:"link" })}
-                href={`/years/${year.slug}`}
-
-              >
-                read more
-              </Link>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

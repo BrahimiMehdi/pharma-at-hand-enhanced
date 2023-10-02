@@ -14,10 +14,8 @@ type Props = {
 function NavLink({children,slug,link}: Props) {
   const pathName = usePathname();
   const current = extractFirstSubpath(pathName)
-  const isActive = pathName === link 
+  const isActive = pathName === link  || current === link
   const variant = isActive ? "secondary" : "ghost"
-   console.log(link);
-   
 
     
   return (

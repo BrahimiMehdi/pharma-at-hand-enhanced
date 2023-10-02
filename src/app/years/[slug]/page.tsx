@@ -1,0 +1,33 @@
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { getYear } from "@/components/queries";
+import { FolderOpen,ArrowRightCircle } from "lucide-react";
+export default async function Years({ params }: { params: { slug: string } }) {
+  const years = await getYear(params.slug);
+  return (
+    <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-12 p-24">
+      <section className="flex w-full flex-col gap-y-8">
+        
+        <h1 className="text-2xl font-bold">Drives</h1>
+        <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
+          {years.drives?.map((drive, index) => (
+            <a
+              href={drive.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              key={index}
+              className={`${drive.isMain ? "bg-primary text-white" : "bg-transparent"}  border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-8  pb-10 flex flex-col gap-y-1`}
+            >
+              <div className="w-full flex justify-between items-center">
+              <FolderOpen strokeWidth={1.2} className="w-12 mr-1 h-12" />
+              <ArrowRightCircle  strokeWidth={1.2} className="w-6 mr-1 h-6" />
+              </div>
+              <h2 className="font-bold mt-2 text-xl">{drive.name}</h2>
+             
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}

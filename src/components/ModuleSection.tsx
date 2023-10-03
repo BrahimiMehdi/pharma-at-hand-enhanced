@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Youtube } from "lucide-react";
 type Props = {
   module: ModuleType;
 };
@@ -13,7 +14,21 @@ function ModuleSection({ module }: Props) {
         </div>
         <h2 className="font-bold  text-xl">{module.name}</h2>
       </div>
-      <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]"></div>
+
+      <div className="grid gap-8 mt-12 [grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
+        {module.video.map((video,index)=>(
+            
+     <a
+     href={video.link} target="_blank" rel="noopener noreferrer"
+     key={index}
+     
+     className={` border bgred shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
+   >
+     <p className="font-bold mt-2 text-lg">{video.name}</p>
+    <Youtube strokeWidth={1.2} size={"30px"} fill="rgb(239,68,68)" />
+   </a>
+        ))}
+      </div>
     </section>
   );
 }

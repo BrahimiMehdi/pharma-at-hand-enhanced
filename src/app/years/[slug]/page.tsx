@@ -1,9 +1,10 @@
 import { getYear } from "@/components/queries";
 import { FolderOpen,ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 export default async function Years({ params }: { params: { slug: string } }) {
   const years = await getYear(params.slug);
-  
+
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
       <section className="flex w-full flex-col gap-y-8">
@@ -32,8 +33,15 @@ export default async function Years({ params }: { params: { slug: string } }) {
 
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(16rem,_1fr));]">
         {years.modules?.map((module, index) => (
-            <div
+            <Link
+              href={{
+                pathname:`/years/${params.slug}/module`,
+                query:{
+                  name:module.name
+                }
+              }}
               key={index}
+              
               className={` border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
             >
               <h2 className="font-bold mt-2 text-xl">{module.name}</h2>
@@ -41,9 +49,11 @@ export default async function Years({ params }: { params: { slug: string } }) {
                 <Image src={module.image.url} alt={module.name} width={module.image.width} height={module.image.height} />
               </div>
              
-            </div>
+            </Link>
           ))}
+         
         </div>
+        {/* <iframe src="https://drive.google.com/embeddedfolderview?id=1-0XNtD_MwS5pocD9j0qkJ6-huon76b1u#list" className="w-full h-96" /> */}
       </section>
     </main>
   );

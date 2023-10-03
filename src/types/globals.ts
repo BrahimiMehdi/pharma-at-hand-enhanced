@@ -32,7 +32,7 @@ type ModuleType = {
   video:{
     name:string;
     link:string;
-  }
+  }[]
   color:{
     hex:string;
   }

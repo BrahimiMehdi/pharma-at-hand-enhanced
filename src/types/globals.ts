@@ -23,11 +23,26 @@ type ArticleType = {
   content:any;
   author:AuthorType
 };
+type ModuleType = {
+  name:string;
+  coeff:number;
+  image:ImageType;
+  year:YearType;
+  tp:boolean;
+  video:{
+    name:string;
+    link:string;
+  }
+  color:{
+    hex:string;
+  }
+}
 type YearType = {
   title: string;
   drives: DriveType[];
   slug:string;
-  guide?:ArticleType;  
+  guide?:ArticleType;
+  modules:ModuleType[];
 };
 type ClubType = {
   name: string;

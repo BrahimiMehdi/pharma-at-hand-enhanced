@@ -1,7 +1,9 @@
 import { getYear } from "@/components/queries";
 import { FolderOpen,ArrowRightCircle } from "lucide-react";
+import Image from "next/image";
 export default async function Years({ params }: { params: { slug: string } }) {
   const years = await getYear(params.slug);
+  
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
       <section className="flex w-full flex-col gap-y-8">
@@ -23,6 +25,23 @@ export default async function Years({ params }: { params: { slug: string } }) {
               <h2 className="font-bold mt-2 text-xl">{drive.name}</h2>
              
             </a>
+          ))}
+          
+        </div>
+        <h2 className="text-2xl font-bold">Videos</h2>
+
+        <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(16rem,_1fr));]">
+        {years.modules?.map((module, index) => (
+            <div
+              key={index}
+              className={` border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
+            >
+              <h2 className="font-bold mt-2 text-xl">{module.name}</h2>
+              <div style={{backgroundColor:module.color.hex}} className="rounded-md max-h-10 p-1  h-full aspect-square">
+                <Image src={module.image.url} alt={module.name} width={module.image.width} height={module.image.height} />
+              </div>
+             
+            </div>
           ))}
         </div>
       </section>

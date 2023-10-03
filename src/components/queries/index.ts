@@ -21,7 +21,7 @@ export const getYears = async () => {
 export const getClubs = async () => {
   const query = gql`
     query Clubs {
-      clubs(first:100) {
+      clubs(first: 100) {
         name
         instagram
         website
@@ -47,6 +47,23 @@ export const getYear = async (slug: string) => {
           isMain
           link
           name
+        }
+        modules {
+          color {
+            hex
+          }
+          name
+          tp
+          video {
+            name
+            link
+          }
+          image {
+            height
+            url
+            width
+          }
+          coeff
         }
         guide: article {
           author {

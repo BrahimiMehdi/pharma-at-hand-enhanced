@@ -26,10 +26,15 @@ type ArticleType = {
 type YearType = {
   title: string;
   drives: DriveType[];
-  createdAt: string;
-  updatedAt: string;
   slug:string;
-  guide:ArticleType;  
+  guide?:ArticleType;  
+};
+type ClubType = {
+  name: string;
+  instagram: string;
+  website?: string;
+  description:string;
+  logo:ImageType;  
 };
 type NavLinksType = {
  

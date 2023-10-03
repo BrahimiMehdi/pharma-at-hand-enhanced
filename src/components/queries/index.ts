@@ -18,6 +18,25 @@ export const getYears = async () => {
   const { years } = await client.request<{ years: YearType[] }>(query);
   return years;
 };
+export const getClubs = async () => {
+  const query = gql`
+    query Clubs {
+      clubs(first:100) {
+        name
+        instagram
+        website
+        description
+        logo {
+          url
+          width
+          height
+        }
+      }
+    }
+  `;
+  const { clubs } = await client.request<{ clubs: ClubType[] }>(query);
+  return clubs;
+};
 export const getYear = async (slug: string) => {
   const query = gql`
     query Years($slug: String!) {

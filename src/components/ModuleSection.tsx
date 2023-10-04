@@ -9,13 +9,16 @@ function ModuleSection({ module }: Props) {
   return (
     <section className="flex w-full flex-col gap-y-8">
       <div className={` flex items-center gap-x-4`}>
-        <div style={{ backgroundColor: module.color.hex }} className="rounded-md max-h-10 p-1  h-full aspect-square">
+        <div style={{ backgroundColor: module.color.hex }} className="rounded-md max-h-14 p-1  h-full aspect-square">
           <Image src={module.image.url} alt={module.name} width={module.image.width} height={module.image.height} />
         </div>
-        <h2 className="font-bold  text-xl">{module.name}</h2>
+        <div className="h-full flex flex-col gap-y-2 ">
+        <h2 className="font-bold  text-2xl">{module.name}</h2>
+        <p className="text-muted-foreground">coefficient {`:`} {module.coeff}</p>
+        </div>
       </div>
 
-      <div className="grid gap-8 mt-12 [grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
+      <div className="grid gap-8 mt-12 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));] sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
         {module.video.map((video,index)=>(
             
      <a

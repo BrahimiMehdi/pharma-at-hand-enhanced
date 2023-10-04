@@ -1,7 +1,7 @@
 "use client"
 
 import { Nav } from "./Nav";
-import { Menu, Users2 } from "lucide-react";
+import { Calculator, Menu, Users2 } from "lucide-react";
 import { useState,useEffect } from "react";
 import { Button } from "../ui/button";
 import { useParams, usePathname } from "next/navigation"
@@ -65,6 +65,11 @@ function NavLayout({ children }: Props) {
           link: `/years/${slug}/guide`,
           icon: <Map strokeWidth={1.2} size={"18px"} className="mr-2" />,
           name: "Guide",
+        },
+        {
+          link: `/years/${slug}/moyenne`,
+          icon: <Calculator strokeWidth={1.2} size={"18px"} className="mr-2" />,
+          name: "Calcule",
         },
       ]
     }

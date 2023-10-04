@@ -8,7 +8,7 @@ function AuthorCard({author}: Props) {
   return (
     <div className="flex w-full gap-x-4">
         <Image
-        className="w-12 rounded-full aspect-square"
+        className="w-12 rounded-full object-contain border p-1 aspect-square"
           alt={author.name}
           src={author.photo.url}
           width={author.photo.width}

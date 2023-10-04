@@ -37,6 +37,16 @@ type ModuleType = {
     hex:string;
   }
 }
+interface ColumnType extends ModuleType{
+  T1?:number;
+  T2?:number;
+  T3?:number;
+  TP?:number | string;
+  total:number;
+  moyenne?:number;
+  moyenneSansTp?:number;
+}
+
 type YearType = {
   title: string;
   drives: DriveType[];

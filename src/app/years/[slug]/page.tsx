@@ -1,5 +1,6 @@
 import { getYear } from "@/components/queries";
-import { FolderOpen,ArrowRightCircle } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { FolderOpen,ArrowRightCircle, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 export default async function Years({ params }: { params: { slug: string } }) {
@@ -7,7 +8,13 @@ export default async function Years({ params }: { params: { slug: string } }) {
 
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
+      <div className="w-full mb-6">
+     <Link href={`/`} className={buttonVariants({size:"icon",variant:"secondary"})}>
+     <ArrowLeft strokeWidth={1.2} size={"28px"} />
+     </Link>
+     </div>
       <section className="flex w-full flex-col gap-y-8">
+
         
         <h1 className="text-2xl font-bold">Drives</h1>
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
@@ -44,7 +51,7 @@ export default async function Years({ params }: { params: { slug: string } }) {
               
               className={` border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
             >
-              <h2 className="font-bold mt-2 text-xl">{module.name}</h2>
+              <h2 className="font-bold mt-2 text-lg">{module.name}</h2>
               <div style={{backgroundColor:module.color.hex}} className="rounded-md max-h-10 p-1  h-full aspect-square">
                 <Image src={module.image.url} alt={module.name} width={module.image.width} height={module.image.height} />
               </div>

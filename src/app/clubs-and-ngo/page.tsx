@@ -1,12 +1,18 @@
 import { getClubs } from "@/components/queries";
 import Image from "next/image";
-import { Instagram ,Globe} from "lucide-react";
+import { Instagram ,Globe, ArrowLeft} from "lucide-react";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 export default async function Home() {
   
   const clubs = await getClubs()
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
-
+<div className="w-full mb-6">
+     <Link href={`/`} className={buttonVariants({size:"icon",variant:"secondary"})}>
+     <ArrowLeft strokeWidth={1.2} size={"28px"} />
+     </Link>
+     </div>
         <div className="grid w-full gap-8  sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
           {clubs?.map((club, index) => (
             <div

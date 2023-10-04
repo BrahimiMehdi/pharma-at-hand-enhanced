@@ -1,7 +1,8 @@
 import { getYear } from "@/components/queries";
-import { FolderOpen, ArrowRightCircle } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import ModuleSection from "@/components/ModuleSection";
-import Image from "next/image";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 export default async function Years({
   params,
   searchParams,
@@ -14,6 +15,11 @@ export default async function Years({
   const filteredModules = modules.filter((module) => module.name === searchParams.name);
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center gap-y-12 px-6 lg:px-12 p-24">
+     <div className="w-full">
+     <Link href={`/years/${params.slug}`} className={buttonVariants({size:"icon",variant:"secondary"})}>
+     <ArrowLeft strokeWidth={1.2} size={"28px"} />
+     </Link>
+     </div>
       {filteredModules.length ===0 && modules.length ===0 && <h1>No resources found</h1>}
       {filteredModules.length !== 0
         ? filteredModules?.map((module, index) => <ModuleSection key={index} module={module} />)

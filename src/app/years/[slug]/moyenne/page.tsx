@@ -7,7 +7,6 @@ import Link from "next/link";
 export default async function Years({ params }: { params: { slug: string } }) {
   const years = await getYear(params.slug);
   const total = years.modules.map((item)=>item.coeff).reduce((a, b) => a + b, 0)
-  
   let modules:ColumnType[] = years.modules.map((item)=>{return{
     ...item,
     total:total,
@@ -24,7 +23,7 @@ modules[2].T2 = 10;
      </Link>
      </div>
      <h1 className="text-2xl font-bold">Calcul Du moyenne</h1>
-     <DataTable columns={columns} data={modules} />
+     <DataTable columns={columns} originalData={modules} />
     </main>
   );
 }

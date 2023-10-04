@@ -1,5 +1,7 @@
 "use client"
+
 import * as React from "react"
+import { defaultColumn,useSkipper } from "./DefaultColumn"
 import {
   ColumnDef,
   flexRender,
@@ -7,6 +9,7 @@ import {
   SortingState,
   getSortedRowModel,
   useReactTable,
+  RowData
 } from "@tanstack/react-table"
 import {
   Table,
@@ -16,26 +19,56 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
+declare module '@tanstack/react-table' {
+    
+    interface  TableMeta<TData extends RowData> {
+      updateData: (rowIndex: number, columnId: string, value: unknown) => void
+    }
+}
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  originalData: TData[]
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  originalData,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([])
+    const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper()
+    const [data,setData] = React.useState(originalData)
   const table = useReactTable({
+    // @ts-ignore
     data,
+    // @ts-ignore
+
     columns,
+    defaultColumn,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: {
       sorting,
+
     },
+    meta: {
+        updateData: (rowIndex, columnId, value) => {
+          // Skip page index reset until after next rerender
+          skipAutoResetPageIndex()
+          setData(old =>
+            old.map((row, index) => {
+              if (index === rowIndex) {
+                return {
+                  ...old[rowIndex]!,
+                  [columnId]: value,
+                }
+              }
+              return row
+            })
+          )
+        },
+      },
+      debugTable: true,
   })
 
   return (
@@ -46,7 +79,7 @@ export function DataTable<TData, TValue>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead className="text-center" key={header.id}>
+                  <TableHead className="text-center bg-secondary  border-r" key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -67,7 +100,7 @@ export function DataTable<TData, TValue>({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell className="text-center" key={cell.id}>
+                  <TableCell className="text-center max-w-[10rem]" key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

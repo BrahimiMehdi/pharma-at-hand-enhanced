@@ -38,9 +38,9 @@ type ModuleType = {
   }
 }
 interface ColumnType extends ModuleType{
-  T1?:number;
-  T2?:number;
-  T3?:number;
+  T1?:number | string;
+  T2?:number | string;
+  T3?:number | string;
   TP?:number | string;
   total:number;
   moyenne?:number;

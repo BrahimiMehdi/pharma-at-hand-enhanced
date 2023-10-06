@@ -17,7 +17,24 @@ export default async function Years({ params }: { params: { slug: string } }) {
 
         
         <h1 className="text-2xl font-bold">Drives</h1>
-        <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
+        <div className="grid lg:hidden gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
+          {years.drives?.map((drive, index) => (
+            <a
+              href={drive.link}
+              key={index}
+              className={`${drive.isMain ? "bg-primary text-white" : "bg-transparent"}  border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-8  pb-10 flex flex-col gap-y-1`}
+            >
+              <div className="w-full flex justify-between items-center">
+              <FolderOpen strokeWidth={1.2} className="w-12 mr-1 h-12" />
+              <ArrowRightCircle  strokeWidth={1.2} className="w-6 mr-1 h-6" />
+              </div>
+              <h2 className="font-bold mt-2 text-xl">{drive.name}</h2>
+             
+            </a>
+          ))}
+          
+        </div>
+        <div className="lg:grid hidden gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
           {years.drives?.map((drive, index) => (
             <a
               href={drive.link}

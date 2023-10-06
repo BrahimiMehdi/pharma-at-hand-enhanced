@@ -13,7 +13,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body className={`${montserrat.className} bg-background`}>
         <ThemeProvider attribute="class" disableTransitionOnChange defaultTheme="system">
             <MainContextProvider>
           <NavLayout>

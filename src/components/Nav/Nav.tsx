@@ -16,7 +16,7 @@ export const Nav = ({ className,links,open ,setOpen,slug}: SidebarProps) => {
   return (
     <nav
       className={cn(
-        `pb-12 justify-between transition-all duration-300 ease-in-out lg:shadow-none shadow-md z-10 flex flex-col fixed ${open ? "left-0" :"-left-full lg:left-0"} top-0 h-full w-full max-w-xl lg:max-w-xs bg-background`,
+        `pb-12 justify-between transition-all duration-300 ease-in-out lg:shadow-none shadow-md z-10 flex flex-col fixed ${open ? "left-0" :"-left-full "} top-0 h-full w-full max-w-xl lg:max-w-xs bg-background`,
         className
       )}
     >
@@ -24,7 +24,7 @@ export const Nav = ({ className,links,open ,setOpen,slug}: SidebarProps) => {
         <div className="px-3 py-2">
           <div className="w-full mb-2 px-4 items-center flex justify-between">
             <h2 className=" text-lg font-semibold tracking-tight">Pharma At Hand</h2>
-            <Button className="lg:hidden" onClick={()=>setOpen(!open)} size={"icon"}>
+            <Button className="" onClick={()=>setOpen(!open)} size={"icon"}>
               <X strokeWidth={1.4} size={"24px"} />
             </Button>
           </div>

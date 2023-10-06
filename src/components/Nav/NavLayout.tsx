@@ -77,10 +77,10 @@ function NavLayout({ children }: Props) {
   };
   
   return (
-    <div className="flex relative pl-0 lg:pl-80">
+    <div className={`flex relative transition-all duration-300 ease-in-out  ${open ? "lg:pl-80 pl-0" : "lg:pl-0 pl-0"}`}>
       <Nav setOpen={setOpen} open={open} slug={slug} links={NavLinks()} />
       <div className="w-full lg:border-l">
-        <div className="w-full fixed top-0 z-[9]  left-0 pt-8  lg:hidden px-6 ">
+        <div className="w-full fixed top-0 z-[9] lg:px-12  left-0 pt-8   px-6 ">
         <Button   onClick={()=>setOpen(!open)} size={"icon"}>
               <Menu strokeWidth={1.4} size={"24px"} />
             </Button>

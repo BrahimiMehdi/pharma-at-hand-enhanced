@@ -37,6 +37,7 @@ type ModuleType = {
     hex:string;
   }
 }
+type MoyenState = { module: ModuleType; moyenne: number; moycoeff: number }
 interface ColumnType extends ModuleType{
   T1?:number | string;
   T2?:number | string;
@@ -44,7 +45,7 @@ interface ColumnType extends ModuleType{
   TP?:number | string;
   total:number;
   moyenne?:number;
-  moyenneSansTp?:number;
+  moycoeff?:number;
 }
 
 type YearType = {

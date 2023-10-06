@@ -3,8 +3,7 @@ import Image from "next/image";
 import { Instagram ,Globe, ArrowLeft} from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-export default async function Home() {
-  
+export default async function Clubs() {
   const clubs = await getClubs()
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center gap-y-8 px-6 lg:px-12 p-24">

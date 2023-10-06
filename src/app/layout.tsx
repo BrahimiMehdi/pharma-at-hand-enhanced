@@ -1,4 +1,5 @@
 import "./globals.css";
+import { MainContextProvider } from "./context/MainContext";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
@@ -14,7 +15,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={montserrat.className}>
         <ThemeProvider attribute="class" disableTransitionOnChange defaultTheme="system">
-          <NavLayout>{children}</NavLayout>
+            <MainContextProvider>
+          <NavLayout>
+              {children}
+          </NavLayout>
+            </MainContextProvider>
         </ThemeProvider>
       </body>
     </html>

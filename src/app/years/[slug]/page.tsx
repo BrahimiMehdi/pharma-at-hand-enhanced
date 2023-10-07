@@ -53,7 +53,7 @@ export default async function Years({ params }: { params: { slug: string } }) {
           ))}
           
         </div>
-        <h2 className="text-2xl font-bold">Videos</h2>
+        {years.modules.length!==0 && <h2 className="text-2xl font-bold">Videos</h2>}
 
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(16rem,_1fr));]">
         {years.modules?.map((module, index) => (

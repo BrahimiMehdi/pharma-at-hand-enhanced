@@ -9,7 +9,7 @@ export default async function Articles({ params }: { params: { slug: string } })
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-start px-6 lg:px-12  p-12">
       <div className="w-full mt-12 lg:mb-6 max-w-5xl mb-6">
-        <Link href={`/articles`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
+        <Link aria-label="history-back" href={`/articles`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
           <ArrowLeft strokeWidth={1.2} size={"28px"} />
         </Link>
       </div>

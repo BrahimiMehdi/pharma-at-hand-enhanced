@@ -18,7 +18,7 @@ export default async function Years({
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center gap-y-16 px-6 lg:px-12 p-24">
       <div className="w-full">
-        <Link href={`/years/${params.slug}`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
+        <Link aria-label="history-back" href={`/years/${params.slug}`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
           <ArrowLeft strokeWidth={1.2} size={"28px"} />
         </Link>
       </div>

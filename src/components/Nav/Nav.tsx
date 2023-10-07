@@ -24,7 +24,7 @@ export const Nav = ({ className,links,open ,setOpen,slug}: SidebarProps) => {
         <div className="px-3 py-2">
           <div className="w-full mb-2 px-4 items-center flex justify-between">
             <h2 className=" text-lg font-semibold tracking-tight">Pharma At Hand</h2>
-            <Button className="" onClick={()=>setOpen(!open)} size={"icon"}>
+            <Button  aria-label="menu-close"  className="" onClick={()=>setOpen(!open)} size={"icon"}>
               <X strokeWidth={1.4} size={"24px"} />
             </Button>
           </div>

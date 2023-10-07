@@ -30,7 +30,7 @@ function NavLayout({ children }: Props) {
   const { slug } = useParams();
 
   const current = extractFirstSubpath(pathName);
-  const primaryLinks = ["/", "/articles", "/events", "/clubs-and-ngo"];
+  const primaryLinks = ["/", "/articles", "/events", "/coming-soon", "/clubs-and-ngo"];
   const NavLinks = () => {
     if (primaryLinks.includes(current)) {
       return [
@@ -46,7 +46,7 @@ function NavLayout({ children }: Props) {
           name: "Articles",
         },
         {
-          link: "/events",
+          link: "/coming-soon",
           icon: <CalendarCheck2 strokeWidth={1.2} size={"18px"} className="mr-2" />,
           name: "Events",
         },
@@ -90,7 +90,7 @@ function NavLayout({ children }: Props) {
       <Nav setOpen={setOpen} open={open} slug={slug} links={NavLinks()} />
       <div className="w-full lg:border-l">
         <div className="w-full fixed top-0 z-[9] lg:px-12  left-0 pt-8   px-6 ">
-          <Button onClick={() => setOpen(!open)} size={"icon"}>
+          <Button aria-label="menu-open" onClick={() => setOpen(!open)} size={"icon"}>
             <Menu strokeWidth={1.4} size={"24px"} />
           </Button>
         </div>

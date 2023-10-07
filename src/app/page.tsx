@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 import { getYears } from "@/components/queries";
 import { ArrowRightCircle, GraduationCap } from "lucide-react";
 export default async function Home() {

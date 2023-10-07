@@ -6,6 +6,7 @@ type Props = {
 };
 
 function ModuleSection({ module }: Props) {
+  
   return (
     <section className="flex w-full flex-col gap-y-8">
       <div className={` flex items-center gap-x-4`}>
@@ -30,7 +31,10 @@ function ModuleSection({ module }: Props) {
             className={` border bgred shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
           >
             <p className="font-bold mt-2 text-lg">{video.name}</p>
-            <Youtube strokeWidth={1.2} size={"30px"} fill="rgb(239,68,68)" />
+            <div className="flex items-center gap-x-4">
+              <Youtube strokeWidth={1.2} size={"30px"} fill="rgb(239,68,68)" />
+              {!video.isEnglish ? <img className="w-7" src="/france.png" alt="" /> : <img className="w-7" src="/england.png" alt="" />}
+            </div>
           </a>
         ))}
       </div>
@@ -42,7 +46,10 @@ function ModuleSection({ module }: Props) {
             className={` border bgred shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
           >
             <p className="font-bold mt-2 text-lg">{video.name}</p>
-            <Youtube strokeWidth={1.2} size={"30px"} fill="rgb(239,68,68)" />
+            <div className="flex items-center gap-x-4">
+              <Youtube strokeWidth={1.2} size={"30px"} fill="rgb(239,68,68)" />
+              {!video.isEnglish ? <img className="w-7" src="/france.png" alt="" /> : <img className="w-7" src="/england.png" alt="" />}
+            </div>
           </a>
         ))}
       </div>

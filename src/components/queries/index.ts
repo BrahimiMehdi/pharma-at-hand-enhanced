@@ -1,4 +1,3 @@
-
 import { gql } from "graphql-request";
 import client from "@/lib/client";
 
@@ -58,6 +57,7 @@ export const getYear = async (slug: string) => {
           video {
             name
             link
+            isEnglish
           }
           image {
             height

@@ -24,9 +24,9 @@ export default async function Years({
       </div>
       {filteredModules.length === 0 && !name && <h1>No resources found</h1>}
       {filteredModules.length !== 0 ? (
-        filteredModules?.map((module, index) => <ModuleSection key={index} module={module} />)
+        filteredModules?.map((module, index) => <ModuleSection  key={index} module={module} />)
       ) : !name ? (
-        modules.map((module, index) => <ModuleSection key={index} module={module} />)
+        modules.map((module, index) => <ModuleSection  key={index} module={module} />)
       ) : (
         <h1>No resources found</h1>
       )}

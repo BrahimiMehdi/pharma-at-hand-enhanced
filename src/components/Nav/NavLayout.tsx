@@ -22,7 +22,7 @@ function NavLayout({ children }: Props) {
       mm.add("(max-width:1024px)", () => {
         setOpen(false);
       });
-      gsap.to(contentRef.current, { opacity: 1, translateY: "0", duration: 0.8, ease: Power3.easeInOut });
+      gsap.to(contentRef.current, { opacity: 1, translateY: "0", duration: 0.4, ease: Power3.easeInOut });
     });
     return () => {
       ctx.revert();

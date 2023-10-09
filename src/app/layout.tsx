@@ -15,8 +15,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${montserrat.className} bg-background`}>
-        <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${process.env.ANALYTICS_TAG}`} />
-        <Script defer id="google-analytics">
+        <Script strategy="afterInteractive" defer src={`https://www.googletagmanager.com/gtag/js?id=${process.env.ANALYTICS_TAG}`} />
+        <Script  strategy="afterInteractive" defer id="google-analytics">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

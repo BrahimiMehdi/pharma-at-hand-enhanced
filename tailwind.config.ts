@@ -62,10 +62,15 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        "fade-up":{
+          from:{opacity:"var( --tw-enter-opacity)",transform:'translateY(12px)'},
+          to:{opacity:"var( --tw-exit-opacity)",transform:"translateY(0)"}
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-up": "fade-up 0.8s ease-out",
       },
     },
   },

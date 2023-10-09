@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../ThemeToggle";
-import { X } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { Button } from "../ui/button";
 import NavLink from "./NavLink";
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,7 +22,7 @@ export const Nav = ({ className,links,open ,setOpen,slug}: SidebarProps) => {
     >
       <div className="space-y-4  py-4">
         <div className="px-3 py-2">
-          <div className="w-full mb-2 px-4 items-center flex justify-between">
+          <div className="w-full mb-2  items-center flex justify-between">
             <h2 className=" text-lg font-semibold tracking-tight">Pharma At Hand</h2>
             <Button  aria-label="menu-close"  className="" onClick={()=>setOpen(!open)} size={"icon"}>
               <X strokeWidth={1.4} size={"24px"} />
@@ -35,6 +35,16 @@ export const Nav = ({ className,links,open ,setOpen,slug}: SidebarProps) => {
                 <span>{link.name}</span>
               </NavLink>
             ))}
+          </div>
+        </div>
+        <div className="px-3 py-2">
+        <h2 className=" text-lg font-semibold tracking-tight">Contact</h2>
+
+        <div className="space-y-1 mt-6">
+              <NavLink slug={"/contact"}   link={"/contact"}>
+              <Send strokeWidth={1.2} size={"18px"} className="mr-2" />
+                <span>Contact</span>
+              </NavLink>
           </div>
         </div>
     

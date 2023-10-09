@@ -26,8 +26,8 @@ export default async function Years({ params }: { params: { slug: string } }) {
         <Table>
         <TableHeader>
           <TableRow>
-            {heads.map((item) => (
-              <TableHead className="text-center">{item}</TableHead>
+            {heads.map((item,index) => (
+              <TableHead key={index} className="text-center">{item}</TableHead>
             ))}
           </TableRow>
         </TableHeader>

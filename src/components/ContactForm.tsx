@@ -29,7 +29,6 @@ function ContactForm({}: Props) {
     },
   });
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: {
@@ -37,6 +36,7 @@ function ContactForm({}: Props) {
       },
       body: JSON.stringify({ ...values, action: "addContact" }),
     });
+    
   };
 
   return (
@@ -91,8 +91,9 @@ function ContactForm({}: Props) {
               </FormItem>
             )}
           />
-          <Button disabled={form.formState.isSubmitSuccessful} className={`${form.formState.isSubmitSuccessful ? "bg-green-600 dark:text-white disabled:cursor-not-allowed" : ""} `} size={"full"} variant={`default`} type="submit">
+          <Button disabled={form.formState.isSubmitting || form.formState.isSubmitSuccessful} className={`${form.formState.isSubmitSuccessful ? "bg-green-600 hover:bg-green-500 dark:text-white" : "disabled:cursor-not-allowed"} gap-x-6 `} size={"full"} variant={`default`} type="submit">
             Submit
+            <div className={`h-4 w-4 border-l border-t rounded-full animate-spin ${form.formState.isSubmitting ? "block" :" hidden"}`}></div>
           </Button>
         </form>
       </Form>

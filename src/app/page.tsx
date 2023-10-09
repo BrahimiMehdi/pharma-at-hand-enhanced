@@ -17,11 +17,11 @@ export default async function Home() {
           </h1>
           <img className="order-2 lg:order-2 w-40" src="/main.svg" alt="" />
         </div>
-        <p className="max-w-5xl text-muted-foreground">
+        <h2 className="max-w-5xl text-muted-foreground">
           Welcome to our student platform, your one-stop destination for academic success. Here, you'll find an
           extensive collection of resources, links, and videos curated specifically for students like you. Simplify your
           educational journey and access everything you need in one place.
-        </p>
+        </h2>
         <h3 className="text-2xl font-bold">Choose your year</h3>
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));]  sm:[grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
           {years?.map((year, index) => (

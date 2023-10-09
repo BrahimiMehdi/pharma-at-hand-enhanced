@@ -15,14 +15,12 @@ type Props = {
 function NavLayout({ children }: Props) {
   const [open, setOpen] = useState(false);
   const pathName = usePathname();
-  const contentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add("(max-width:1024px)", () => {
         setOpen(false);
       });
-      gsap.to(contentRef.current, { opacity: 1, translateY: "0", duration: 0.4, ease: Power3.easeInOut });
     });
     return () => {
       ctx.revert();
@@ -95,7 +93,7 @@ function NavLayout({ children }: Props) {
             <Menu strokeWidth={1.4} size={"24px"} />
           </Button>
         </div>
-        <div className="opacity-0 translate-y-[12px]" ref={contentRef} >{children}</div>
+        {children}
       </div>
     </div>
   );

@@ -30,9 +30,11 @@ function ArticleDetails({article}: Props) {
           <section className="mt-4">
             <RichText
               renderers={{
-                h1: ({ children }) => <h1 className="text-3xl font-bold">{children}</h1>,
-                h2: ({ children }) => <h2 className="text-2xl font-bold">{children}</h2>,
-                h3: ({ children }) => <h3 className="text-xl font-bold">{children}</h3>,
+                h1: ({ children }) => <h1 className="text-3xl my-10 font-bold">{children}</h1>,
+                h2: ({ children }) => <h2 className="text-2xl my-8 font-bold">{children}</h2>,
+                h3: ({ children }) => <h3 className="text-xl my-6 font-bold">{children}</h3>,
+                li:({children})=> <li className='list-item my-3 list-disc px-2 list-outside'>{children}</li>,
+                p : ({children}) => <p className='my-6'>{children}</p>
               }}
               content={article.content.raw}
             />

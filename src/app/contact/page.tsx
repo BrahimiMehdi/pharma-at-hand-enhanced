@@ -3,7 +3,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import ContactForm from "@/components/ContactForm";
 import { constructeMetadata } from "@/lib/utils";
-export const metaData = constructeMetadata({title:"Pharam at hand - contact",description:"Contact us or leave us resources that you think we left out"})
+export const metadata = constructeMetadata({title:"Pharam at hand - contact",description:"Contact us or leave us resources that you think we left out"})
 
 export default async function Clubs() {
   return (

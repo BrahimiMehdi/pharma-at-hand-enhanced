@@ -1,11 +1,9 @@
+import TableRowWrapper from "@/components/TableRow";
 import { getYear } from "@/components/queries";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import TableRowWrapper from "@/components/TableRow";
-// import TableRow from "@/components/TableRow";
-import TableFooter from "@/components/TableFooter";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Moyenne from "@/components/Moyenne";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Link from "next/link";
 export default async function Years({ params }: { params: { slug: string } }) {
   const years = await getYear(params.slug);

@@ -1,8 +1,10 @@
 import ArticleCard from "@/components/Articles/ArticleCard";
 import { getArticles } from "@/components/queries";
 import { buttonVariants } from "@/components/ui/button";
+import { constructeMetadata } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+export const metaData = constructeMetadata({title:"Pharam at hand - articles",description:"Learn and find out interesting things about pharmacy"})
 export default async function Articles() {
   const articles = await getArticles();
   return (

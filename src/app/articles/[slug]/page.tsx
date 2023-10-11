@@ -3,6 +3,26 @@ import ArticleDetails from "@/components/Articles/ArticleDetails";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { Metadata, ResolvingMetadata } from "next";
+import { constructeMetadata } from "@/lib/utils";
+type Props = {
+  params: { slug: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const slug = params.slug
+ 
+  // fetch data
+  const article = await getArticle(slug);
+ 
+  // optionally access and extend (rather than replace) parent metadata
+ 
+  return constructeMetadata({title:`Pharama at hand - ${article.title}`,description:article.description,image:article.image.url})
+}
 export default async function Articles({ params }: { params: { slug: string } }) {
   const article = await getArticle(params.slug);
 

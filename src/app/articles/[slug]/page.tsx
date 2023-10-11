@@ -21,7 +21,7 @@ export async function generateMetadata(
  
   // optionally access and extend (rather than replace) parent metadata
  
-  return constructeMetadata({title:`Pharama at hand - ${article.title}`,description:article.description,image:article.image.url})
+  return constructeMetadata({title:`Pharma at hand - ${article.title}`,description:article.description,image:article.image.url})
 }
 export default async function Articles({ params }: { params: { slug: string } }) {
   const article = await getArticle(params.slug);

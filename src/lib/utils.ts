@@ -18,7 +18,7 @@ export function constructeMetadata({
   title = "Pharma at hand - all in one",
   description = "The Resources platform for pharmacy students",
   image = "/thumbnail.png",
-  icons = "/favicon.ico",
+  icons = "/icon.ico",
   noIndex = false,
 }: { title?: string; description?: string; image?: string; icons?: string; noIndex?: boolean } = {}): Metadata {
   return {

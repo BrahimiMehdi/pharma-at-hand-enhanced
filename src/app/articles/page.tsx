@@ -4,7 +4,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { constructeMetadata } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-export const metadata = constructeMetadata({title:"Pharam at hand - articles",description:"Learn and find out interesting things about pharmacy"})
+export const metadata = constructeMetadata({
+  title: "Pharam at hand - articles",
+  description: "Learn and find out interesting things about pharmacy",
+});
 export default async function Articles() {
   const articles = await getArticles();
   return (

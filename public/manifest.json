@@ -1,12 +1,12 @@
 {
-    "theme_color": "#2563EB",
-    "background_color": "#2563EB",
+    "theme_color": "#407BFF",
+    "background_color": "#407BFF",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
     "name": "Pharma at hand",
-    "short_name": "Ph",
-    "description": "All the resources you need",
+    "short_name": "PAH",
+    "description": "Resources platform for pharmacy students",
     "icons": [
         {
             "src": "/icon-192x192.png",

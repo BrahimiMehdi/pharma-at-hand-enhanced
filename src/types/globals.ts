@@ -14,6 +14,7 @@ type AuthorType = {
   instagram: string;
   articles: ArticleType[];
   photo: ImageType;
+  events?:EventsType[];
 };
 type ArticleType = {
   title: string;
@@ -48,7 +49,13 @@ interface ColumnType extends ModuleType {
   moyenne?: number;
   moycoeff?: number;
 }
-
+type EventsType = {
+  title:string;
+  description:string;
+  image:ImageType;
+  link:string;
+  author:AuthorType;
+}
 type YearType = {
   title: string;
   drives: DriveType[];

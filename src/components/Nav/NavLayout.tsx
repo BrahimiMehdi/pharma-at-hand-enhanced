@@ -29,7 +29,7 @@ function NavLayout({ children }: Props) {
   const { slug } = useParams();
 
   const current = extractFirstSubpath(pathName);
-  const primaryLinks = ["/", "/articles", "/events","/contact", "/coming-soon", "/clubs-and-ngo"];
+  const primaryLinks = ["/", "/articles", "/events","/contact", "/clubs-and-ngo"];
   const NavLinks = () => {
     if (primaryLinks.includes(current)) {
       return [
@@ -45,7 +45,7 @@ function NavLayout({ children }: Props) {
           name: "Articles",
         },
         {
-          link: "/coming-soon",
+          link: "/events",
           icon: <CalendarCheck2 strokeWidth={1.2} size={"18px"} className="mr-2" />,
           name: "Events",
         },
@@ -87,11 +87,11 @@ function NavLayout({ children }: Props) {
       className={`flex relative transition-all duration-300 ease-in-out  ${open ? "lg:pl-80 pl-0" : "lg:pl-0 pl-0"}`}
     >
       <Nav setOpen={setOpen} open={open} slug={slug} links={NavLinks()} />
-      <div className={`w-full ${open ? "lg:border-l  " : " border-l-0"}`}>
+      <div className={`w-full ${open ? "lg:border-l  lg:border-l-secondary " : " border-l-transparent"}`}>
         <div className="w-full fixed top-0 z-[9] lg:px-12  left-0 pt-8   px-6 ">
-          <Button aria-label="menu-open" onClick={() => setOpen(!open)} size={"icon"}>
+         {!open && <Button aria-label="menu-open" onClick={() => setOpen(!open)} size={"icon"}>
             <Menu strokeWidth={1.4} size={"24px"} />
-          </Button>
+          </Button>}
         </div>
         {children}
       </div>

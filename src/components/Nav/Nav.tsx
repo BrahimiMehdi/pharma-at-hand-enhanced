@@ -52,10 +52,10 @@ export const Nav = ({ className, links, open, setOpen, slug }: SidebarProps) => 
       </div>
       <div className="px-3 flex justify-between items-center  ">
       <div className="space-y-1 flex items-center justify-center gap-x-8">
-            <a className={buttonVariants({variant:"ghost",size:"icon"})} href="http://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a className={buttonVariants({variant:"ghost",size:"icon"})} href="https://www.instagram.com/pharma.at.hand/" target="_blank" rel="noopener noreferrer">
               <Instagram />
             </a>
-            <a className={buttonVariants({variant:"ghost",size:"icon"})} href="http://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a className={buttonVariants({variant:"ghost",size:"icon"})} href="http://t.me/pharma_at_hand" target="_blank" rel="noopener noreferrer">
               <Send />
             </a>
           </div>

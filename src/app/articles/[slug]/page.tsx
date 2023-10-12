@@ -1,4 +1,4 @@
-import { getArticle } from "@/components/queries";
+import { getArticle, getArticles } from "@/components/queries";
 import ArticleDetails from "@/components/Articles/ArticleDetails";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -8,6 +8,13 @@ import { constructeMetadata } from "@/lib/utils";
 type Props = {
   params: { slug: string }
   searchParams: { [key: string]: string | string[] | undefined }
+}
+export async function generateStaticParams(){
+  const articles =  await getArticles();
+  const slugs = articles.map((item)=>item.slug)
+  return slugs.map((slug)=>({
+    slug
+  }))
 }
 export async function generateMetadata(
   { params, searchParams }: Props,
@@ -23,6 +30,7 @@ export async function generateMetadata(
  
   return constructeMetadata({title:`Pharma at hand - ${article.title}`,description:article.description,image:article.image.url})
 }
+
 export default async function Articles({ params }: { params: { slug: string } }) {
   const article = await getArticle(params.slug);
 

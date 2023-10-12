@@ -52,9 +52,12 @@ interface ColumnType extends ModuleType {
 type EventsType = {
   title:string;
   description:string;
+  isUpcoming:boolean;
+  location:string;
   image:ImageType;
   link:string;
   author:AuthorType;
+  date:string;
 }
 type YearType = {
   title: string;

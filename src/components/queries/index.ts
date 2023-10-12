@@ -1,5 +1,6 @@
 import { gql } from "graphql-request";
 import client from "@/lib/client";
+import { EventType } from "react-hook-form";
 
 export const getYears = async () => {
   const query = gql`
@@ -125,6 +126,60 @@ export const getArticles = async () => {
   `;
   const { articles } = await client.request<{ articles: ArticleType[] }>(query);
   return articles;
+};
+export const getEvents = async () => {
+  const query = gql`
+    query Events {
+      past: events(where: { isUpcoming: false }) {
+        author {
+          instagram
+          name
+          description
+          photo {
+            width
+            url
+            height
+          }
+        }
+        date
+        description
+        isUpcoming
+        link
+        location
+        image {
+          url
+          width
+          height
+        }
+        title
+      }
+      upcoming: events(where: { isUpcoming: true }) {
+        author {
+          instagram
+          name
+          description
+          photo {
+            width
+            url
+            height
+          }
+        }
+        date
+        description
+        isUpcoming
+        link
+        location
+        image {
+          url
+          width
+          height
+        }
+        title
+      }
+    }
+  `;
+  const { past,upcoming } = await client.request<{ past: EventsType[],upcoming: EventsType[] }>(query);
+  return {past,upcoming};
 };
 export const getArticle = async (slug: string) => {
   const query = gql`

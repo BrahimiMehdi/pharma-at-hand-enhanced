@@ -3,6 +3,14 @@ import { buttonVariants } from "@/components/ui/button";
 import { FolderOpen,ArrowRightCircle, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getYears } from "@/components/queries";
+export async function generateStaticParams(){
+  const years =  await getYears();
+  const slugs = years.map((item)=>item.slug)
+  return slugs.map((slug)=>({
+    slug
+  }))
+}
 export default async function Years({ params }: { params: { slug: string } }) {
   const years = await getYear(params.slug);
 

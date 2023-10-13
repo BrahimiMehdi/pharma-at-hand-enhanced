@@ -14,7 +14,7 @@ function EventUpCard({ card }: Props) {
       rel="noopener noreferrer"
       className="h-96 p-4 py-8  group w-full overflow-hidden   relative rounded-xl"
     >
-      <div className="absolute  z-[2] inset-0 w-full h-full bg-foreground transition-all duration-300 ease-in-out group-hover:opacity-50 opacity-60"></div>
+      <div className="absolute  z-[2] inset-0 w-full h-full dark:bg-background bg-foreground transition-all duration-300 ease-in-out dark:opacity-50 dark:group-hover:opacity-40 group-hover:opacity-50 opacity-60"></div>
       <div className="absolute z-[1] inset-0 w-full h-full">
         <Image
           src={card.image.url}
@@ -24,7 +24,7 @@ function EventUpCard({ card }: Props) {
           className="object-cover h-full w-full"
         />
       </div>
-      <div className="flex relative justify-between z-[3]  text-background   flex-col h-full w-full">
+      <div className="flex relative justify-between z-[3] dark:text-foreground  text-background   flex-col h-full w-full">
         <div className="flex  flex-col gap-y-8">
           <h2 className="font-bold  relative  text-4xl ">
             {card.title}

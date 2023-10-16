@@ -3,20 +3,22 @@ import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../ThemeToggle";
 import { Instagram, Send, X ,Mail} from "lucide-react";
 import { Button,buttonVariants } from "../ui/button";
+import PwaButton from "../PwaButton";
 import NavLink from "./NavLink";
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   links: NavLinksType;
   slug: string | string[];
+  pathName:string;
   open: boolean;
   setOpen: React.Dispatch<boolean>;
 }
 
-export const Nav = ({ className, links, open, setOpen, slug }: SidebarProps) => {
+export const Nav = ({ className,pathName, links, open, setOpen, slug }: SidebarProps) => {
   return (
     <nav
       className={cn(
         `pb-12 justify-between transition-all duration-300  ease-in-out lg:shadow-none shadow-md z-10 flex flex-col fixed ${
-          open ? "left-0" : "-left-full "
+          open ? "left-0" : "-left-full lg:left-0 "
         } top-0 h-full w-full max-w-xl lg:max-w-xs bg-background`,
         className
       )}
@@ -25,7 +27,7 @@ export const Nav = ({ className, links, open, setOpen, slug }: SidebarProps) => 
         <div className="px-3 py-2">
           <div className="w-full mb-2  items-center flex justify-between">
            <img className="w-16 dark:invert" src="/logoTransparent.svg" alt="" />
-            <Button aria-label="menu-close" className="" onClick={() => setOpen(!open)} size={"icon"}>
+            <Button aria-label="menu-close" className="lg:hidden" onClick={() => setOpen(!open)} size={"icon"}>
               <X strokeWidth={1.4} size={"24px"} />
             </Button>
           </div>
@@ -47,6 +49,9 @@ export const Nav = ({ className, links, open, setOpen, slug }: SidebarProps) => 
               <span>Contact</span>
             </NavLink>
           </div>
+          {pathName!=="/" && <div className="space-y-1 mt-32">
+            <PwaButton />
+          </div>}
           
         </div>
       </div>

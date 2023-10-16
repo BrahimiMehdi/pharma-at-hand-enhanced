@@ -9,7 +9,7 @@ type Props = {
 function EventUpCard({ card }: Props) {
   return (
     <a
-      href={card.link}
+      href={`${card.link}`}
       target="_blank"
       rel="noopener noreferrer"
       className="h-96 p-4 py-8  group w-full overflow-hidden   relative rounded-xl"

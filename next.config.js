@@ -1,20 +1,24 @@
 /** @type {import('next').NextConfig} */
-const withPWA = require('next-pwa')({
-    dest: 'public'
-  })
-const nextConfig = {
-    ...withPWA({
-        dest:"public",
-        register:true,
-        skipWaiting:true,
-    }),
-    images:{
-        domains:["media.graphassets.com"]
-    },
-    experimental: {
-        workerThreads: false,
-        cpus: 1
-    },
-}
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+const path = require("path");
+const nextConfig = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
+  images: {
+    domains: ["media.graphassets.com"],
+  },
+  experimental: {
+    workerThreads: false,
+    cpus: 1,
+  },
+};
+
+module.exports = nextConfig;

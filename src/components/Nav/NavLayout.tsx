@@ -16,6 +16,7 @@ function NavLayout({ children }: Props) {
   const [open, setOpen] = useState(false);
   const pathName = usePathname();
   useEffect(() => {
+
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
       mm.add("(max-width:1024px)", () => {
@@ -84,11 +85,11 @@ function NavLayout({ children }: Props) {
 
   return (
     <div
-      className={`flex relative transition-all duration-300 ease-in-out  ${open ? "lg:pl-80 pl-0" : "lg:pl-0 pl-0"}`}
+      className={`flex relative transition-all duration-300 ease-in-out lg:pl-80 pl-0`}
     >
-      <Nav setOpen={setOpen} open={open} slug={slug} links={NavLinks()} />
-      <div className={`w-full ${open ? "lg:border-l  lg:border-l-secondary " : " border-l-transparent"}`}>
-        <div className="w-full fixed top-0 z-[9] lg:px-12  left-0 pt-8   px-6 ">
+      <Nav pathName={pathName} setOpen={setOpen} open={open} slug={slug} links={NavLinks()} />
+      <div className={`w-full lg:border-l  lg:border-l-secondary`}>
+        <div className="w-full lg:hidden fixed top-0 z-[9] lg:px-12  left-0 pt-8   px-6 ">
          {!open && <Button aria-label="menu-open" onClick={() => setOpen(!open)} size={"icon"}>
             <Menu strokeWidth={1.4} size={"24px"} />
           </Button>}

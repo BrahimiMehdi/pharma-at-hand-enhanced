@@ -23,7 +23,7 @@ export default async function Home() {
           extensive collection of resources, links, and videos curated specifically for students like you. Simplify your
           educational journey and access everything you need in one place.
         </h2>
-        <PwaButton />
+        {/* <PwaButton /> */}
 
         <h3 className="text-2xl font-bold">Choose your year</h3>
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));]  sm:[grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">

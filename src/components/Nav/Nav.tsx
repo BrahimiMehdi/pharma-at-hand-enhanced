@@ -49,9 +49,9 @@ export const Nav = ({ className,pathName, links, open, setOpen, slug }: SidebarP
               <span>Contact</span>
             </NavLink>
           </div>
-          {pathName!=="/" && <div className="space-y-1 mt-32">
+          {/* {pathName!=="/" && <div className="space-y-1 mt-32">
             <PwaButton />
-          </div>}
+          </div>} */}
           
         </div>
       </div>

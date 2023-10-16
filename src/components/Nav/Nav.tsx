@@ -57,10 +57,10 @@ export const Nav = ({ className,pathName, links, open, setOpen, slug }: SidebarP
       </div>
       <div className="px-3 flex justify-between items-center  ">
       <div className="space-y-1 flex items-center justify-center gap-x-8">
-            <a className={buttonVariants({variant:"ghost",size:"icon"})} href="https://www.instagram.com/pharma.at.hand/" target="_blank" rel="noopener noreferrer">
+            <a aria-label="Instagram link" className={buttonVariants({variant:"ghost",size:"icon"})} href="https://www.instagram.com/pharma.at.hand/" target="_blank" rel="noopener noreferrer">
               <Instagram />
             </a>
-            <a className={buttonVariants({variant:"ghost",size:"icon"})} href="http://t.me/pharma_at_hand" target="_blank" rel="noopener noreferrer">
+            <a aria-label="Telegram link" className={buttonVariants({variant:"ghost",size:"icon"})} href="http://t.me/pharma_at_hand" target="_blank" rel="noopener noreferrer">
               <Send />
             </a>
           </div>

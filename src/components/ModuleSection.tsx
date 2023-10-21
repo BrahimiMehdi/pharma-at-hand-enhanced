@@ -21,7 +21,7 @@ function ModuleSection({ module }: Props) {
         </div>
       </div>
 
-      <div className="lg:grid hidden gap-8 mt-12 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));] sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
+      <div className="grid  gap-8 mt-12 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));] sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
         {module.video.map((video, index) => (
           <a
             href={video.link}
@@ -38,21 +38,7 @@ function ModuleSection({ module }: Props) {
           </a>
         ))}
       </div>
-      <div className="grid lg:hidden gap-8 mt-12 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));] sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
-        {module.video.map((video, index) => (
-          <a
-            href={video.link}
-            key={index}
-            className={` border bgred shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
-          >
-            <p className="font-bold mt-2 text-lg">{video.name}</p>
-            <div className="flex items-center gap-x-4">
-              <Youtube strokeWidth={1.2} size={"30px"} fill="rgb(239,68,68)" />
-              {!video.isEnglish ? <img className="w-7" src="/france.png" alt="" /> : <img className="w-7" src="/england.png" alt="" />}
-            </div>
-          </a>
-        ))}
-      </div>
+      
     </section>
   );
 }

@@ -55,6 +55,7 @@ function TableRowWrapper({ module, inputs }: Props) {
         <input
           value={T1}
           min={0}
+          step="any"
           max={20}
           onChange={(e) => setT1(e.target.value)}
           type="number"
@@ -65,6 +66,8 @@ function TableRowWrapper({ module, inputs }: Props) {
         <input
           value={T2}
           min={0}
+          step="any"
+          
           max={20}
           onChange={(e) => setT2(e.target.value)}
           type="number"
@@ -76,6 +79,8 @@ function TableRowWrapper({ module, inputs }: Props) {
           value={T3}
           min={0}
           max={20}
+          step="any"
+
           onChange={(e) => setT3(e.target.value)}
           type="number"
           className="max-w-[4rem] min-w-[3rem] invalid:outline-red-400 outline outline-secondary rounded-md text-center w-full"
@@ -87,6 +92,8 @@ function TableRowWrapper({ module, inputs }: Props) {
             value={TP}
             min={0}
             max={20}
+          step="any"
+
             onChange={(e) => setTP(e.target.value)}
             type="number"
             className="max-w-[4rem] invalid:outline-red-400 outline outline-secondary rounded-md text-center w-full"

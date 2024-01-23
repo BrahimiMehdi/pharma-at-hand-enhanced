@@ -3,7 +3,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { FolderOpen,ArrowRightCircle, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getYears } from "@/components/queries";
+import { getYears,getDepartements } from "@/components/queries";
+import DrivesSection from "@/components/DrivesSection";
 export async function generateStaticParams(){
   const years =  await getYears();
   const slugs = years.map((item)=>item.slug)
@@ -11,9 +12,10 @@ export async function generateStaticParams(){
     slug
   }))
 }
-export default async function Years({ params }: { params: { slug: string } }) {
+export default async function Years({ params,searchParams }: { params: { slug: string },searchParams:any }) {
   const years = await getYear(params.slug);
-
+  const deps = await getDepartements();
+  
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
       <div className="w-full mb-6">
@@ -24,27 +26,8 @@ export default async function Years({ params }: { params: { slug: string } }) {
       <section className="flex w-full flex-col gap-y-8">
 
         
-        <h1 className="text-2xl font-bold">Drives</h1>
+        <DrivesSection deps={deps} drives={years.drives} />
         
-        <div className="grid  gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
-          {years.drives?.map((drive, index) => (
-            <a
-              href={drive.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              key={index}
-              className={`${drive.isMain ? "bg-primary text-white" : "bg-transparent"}  border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-8  pb-10 flex flex-col gap-y-1`}
-            >
-              <div className="w-full flex justify-between items-center">
-              <FolderOpen strokeWidth={1.2} className="w-12 mr-1 h-12" />
-              <ArrowRightCircle  strokeWidth={1.2} className="w-6 mr-1 h-6" />
-              </div>
-              <h2 className="font-bold mt-2 text-xl">{drive.name}</h2>
-             
-            </a>
-          ))}
-          
-        </div>
         {years.modules.length!==0 && <h2 className="text-2xl font-bold">Videos</h2>}
 
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(16rem,_1fr));]">

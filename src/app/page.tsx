@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getYears } from "@/components/queries";
-import { ArrowRightCircle, GraduationCap } from "lucide-react";
-import PwaButton from "@/components/PwaButton";
+import DrivesCard from "@/components/DrivesCard";
 export default async function Home() {
   
   const years = await getYears()
@@ -23,22 +22,11 @@ export default async function Home() {
           extensive collection of resources, links, and videos curated specifically for students like you. Simplify your
           educational journey and access everything you need in one place.
         </h2>
-        {/* <PwaButton /> */}
 
         <h3 className="text-2xl font-bold">Choose your year</h3>
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));]  sm:[grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
           {years?.map((year, index) => (
-            <Link
-            href={`/years/${year.slug}`}
-              key={index}
-              className="border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-8  pb-10 flex flex-col gap-y-1"
-            >
-              <div className="w-full flex items-center justify-between">
-              <GraduationCap strokeWidth={1.2}  className="w-12 mr-1 h-12" />
-              <ArrowRightCircle  strokeWidth={1.2} className="w-6 mr-1 h-6" />
-              </div>
-              <h2 className="font-bold mt-2 text-xl">{year.title}</h2>
-            </Link>
+           <DrivesCard year={year} key={index} />
           ))}
         </div>
       </section>

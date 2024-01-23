@@ -2,6 +2,7 @@ type DriveType = {
   name: string;
   link: string;
   isMain: boolean;
+  departement:DepartmentType;
 };
 type ImageType = {
   url: string;
@@ -58,6 +59,10 @@ type EventsType = {
   link:string;
   author:AuthorType;
   date:string;
+}
+type DepartmentType={
+  name:string;
+  slug:string;
 }
 type YearType = {
   title: string;

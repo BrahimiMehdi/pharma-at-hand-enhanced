@@ -12,12 +12,29 @@ export const getYears = async () => {
           isMain
           link
           name
+          departement {
+            name
+            slug
+          }
         }
       }
     }
   `;
   const { years } = await client.request<{ years: YearType[] }>(query);
   return years;
+};
+export const getDepartements = async () => {
+  const query = gql`
+    query Deps {
+        departements{
+          name
+          slug
+        }
+      }
+    
+  `;
+  const { departements } = await client.request<{ departements: DepartmentType[] }>(query);
+  return departements;
 };
 export const getClubs = async () => {
   const query = gql`
@@ -48,6 +65,10 @@ export const getYear = async (slug: string) => {
           isMain
           link
           name
+          departement {
+            name
+            slug
+          }
         }
         modules {
           color {
@@ -178,8 +199,8 @@ export const getEvents = async () => {
       }
     }
   `;
-  const { past,upcoming } = await client.request<{ past: EventsType[],upcoming: EventsType[] }>(query);
-  return {past,upcoming};
+  const { past, upcoming } = await client.request<{ past: EventsType[]; upcoming: EventsType[] }>(query);
+  return { past, upcoming };
 };
 export const getArticle = async (slug: string) => {
   const query = gql`

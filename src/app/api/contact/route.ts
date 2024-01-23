@@ -13,7 +13,6 @@ export async function POST(request: RequestParams) {
       },
       body: JSON.stringify(req),
     });
-    console.log(req.email);
     
     if (res.ok)
       return new Response("working", {

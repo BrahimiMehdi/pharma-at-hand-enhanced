@@ -26,7 +26,6 @@ function TableRowWrapper({ module, inputs }: Props) {
         return sum;
       }
       const sum = (t1 + t2) / 2;
-
       return sum;
     } else if (t1 && t2 && t3) {
       if (tp && typeof tp === "number") {

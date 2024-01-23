@@ -61,7 +61,7 @@ export const getYear = async (slug: string) => {
       years(where: { slug: $slug }) {
         slug
         title
-        drives {
+        drives(first:100) {
           isMain
           link
           name

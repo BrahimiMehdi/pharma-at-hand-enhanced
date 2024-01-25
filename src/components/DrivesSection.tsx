@@ -1,6 +1,7 @@
 "use client"
 import { ArrowRightCircle, FolderOpen } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useLayoutEffect,useRef } from "react";
+import {gsap,Power3} from "gsap";
 import { Button } from "./ui/button";
 import { useState } from "react";
 type Props = {
@@ -28,10 +29,19 @@ function DrivesSection({ drives,deps }: Props) {
   );
 }
 const FilteredSection =({dep,selected,drives}:{selected:string,dep:DepartmentType,drives:DriveType[]})=>{
-    const DepDrives = dep.slug ? drives.filter((drive)=>drive?.departement?.slug=== dep.slug) : drives.filter((drive)=>drive?.departement?.slug==="fac-alger")
-
+  const sectionRef = useRef<HTMLDivElement>(null)  
+  const DepDrives = dep.slug ? drives.filter((drive)=>drive?.departement?.slug=== dep.slug) : drives.filter((drive)=>drive?.departement?.slug==="fac-alger")
+  useLayoutEffect(() => {
+    const ctx = gsap.context(()=>{
+      gsap.from(sectionRef.current,{opacity:0,y:10,duration:0.6,ease:Power3.easeInOut})
+    })
+  
+    return () => {
+      ctx.revert()
+    };
+  }, [])
 return(
-    <div className="grid w-full my-8 h-full  gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
+    <div ref={sectionRef} className="grid w-full my-8 h-full  gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
     {DepDrives.length!==0 ? DepDrives?.map((drive, index) => (
       <a
         href={drive.link}

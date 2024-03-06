@@ -1,4 +1,4 @@
-export const revalidate = 120
+export const revalidate = 3600
 import NavLayout from "@/components/Nav/NavLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { constructeMetadata } from "@/lib/utils";

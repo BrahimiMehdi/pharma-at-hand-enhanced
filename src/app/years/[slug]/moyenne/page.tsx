@@ -18,7 +18,7 @@ export default async function Years({ params }: { params: { slug: string } }) {
           <ArrowLeft strokeWidth={1.2} size={"28px"} />
         </Link>
       </div>
-      <h1 className="text-2xl font-bold">Calcul Du moyenne</h1>
+      <h1 className="text-2xl font-bold">Calcul de la moyenne</h1>
 
       {modules.length !==0 ? <>
         <Table>

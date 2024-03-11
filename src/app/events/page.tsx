@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { getEvents, getYears } from "@/components/queries";
-import { ArrowLeft, ArrowRightCircle, GraduationCap } from "lucide-react";
-import Image from "next/image";
+import { getEvents } from "@/components/queries";
+import { ArrowLeft } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import CardsCarousel from "@/components/CardsCarousel";
 export default async function Home() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { Nav } from "./Nav";
-import { Calculator, Menu, Users2 } from "lucide-react";
+import { Calculator, Menu, Users2 ,BookMarked} from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "../ui/button";
 import { useParams, usePathname } from "next/navigation";
@@ -30,7 +30,7 @@ function NavLayout({ children }: Props) {
   const { slug } = useParams();
 
   const current = extractFirstSubpath(pathName);
-  const primaryLinks = ["/", "/articles", "/events","/contact", "/clubs-and-ngo"];
+  const primaryLinks = ["/", "/articles", "/events","/contact", "/clubs-and-ngo","/prayers"];
   const NavLinks = () => {
     if (primaryLinks.includes(current)) {
       return [
@@ -54,6 +54,11 @@ function NavLayout({ children }: Props) {
           link: "/clubs-and-ngo",
           icon: <Users2 strokeWidth={1.2} size={"20px"} className="mr-2" />,
           name: "Clubs & NGO's",
+        },
+        {
+          link: "/prayers",
+          icon: <BookMarked strokeWidth={1.2} size={"20px"} className="mr-2" />,
+          name: "Prayers",
         },
       ];
     } else {

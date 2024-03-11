@@ -23,6 +23,17 @@ export const getYears = async () => {
   const { years } = await client.request<{ years: YearType[] }>(query);
   return years;
 };
+export const getPrayers = async () => {
+  const query = gql`
+    query Years {
+      prayers {
+        prayer
+      }
+    }
+  `;
+  const { prayers } = await client.request<{ prayers: Prayer[] }>(query);
+  return prayers;
+};
 export const getDepartements = async () => {
   const query = gql`
     query Deps {

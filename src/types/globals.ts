@@ -4,6 +4,9 @@ type DriveType = {
   isMain: boolean;
   departement:DepartmentType;
 };
+type Prayer{
+  prayer:string;
+}
 type ImageType = {
   url: string;
   width: number;

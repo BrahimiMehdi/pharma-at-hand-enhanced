@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { getYears } from "@/components/queries";
+import { getYears,getPrayers } from "@/components/queries";
 import DrivesCard from "@/components/DrivesCard";
+import PrayerCarousel from "@/components/PrayerCarousel";
 export default async function Home() {
   
+  const prayers = await getPrayers()
   const years = await getYears()
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
@@ -22,7 +24,8 @@ export default async function Home() {
           extensive collection of resources, links, and videos curated specifically for students like you. Simplify your
           educational journey and access everything you need in one place.
         </h2>
-
+        <h3 className="text-2xl font-bold">Prayers</h3>
+      <PrayerCarousel prayers={prayers} />
         <h3 className="text-2xl font-bold">Choose your year</h3>
         <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));]  sm:[grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
           {years?.map((year, index) => (

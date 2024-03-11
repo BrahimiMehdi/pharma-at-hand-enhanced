@@ -41,7 +41,7 @@ const FilteredSection =({dep,selected,drives}:{selected:string,dep:DepartmentTyp
     };
   }, [])
 return(
-    <div ref={sectionRef} className="grid w-full my-8 h-full  gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
+    <div ref={sectionRef} className="grid w-full my-8 h-full  gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(16rem,_1fr));]">
     {DepDrives.length!==0 ? DepDrives?.map((drive, index) => (
       <a
         href={drive.link}

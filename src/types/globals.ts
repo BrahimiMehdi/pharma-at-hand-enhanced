@@ -4,7 +4,7 @@ type DriveType = {
   isMain: boolean;
   departement:DepartmentType;
 };
-type Prayer{
+type Prayer={
   prayer:string;
 }
 type ImageType = {

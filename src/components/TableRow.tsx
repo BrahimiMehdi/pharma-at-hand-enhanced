@@ -2,18 +2,20 @@
 import { useMainContext } from "@/app/context/MainContext";
 import { useState, useEffect } from "react";
 import { TableCell, TableRow } from "./ui/table";
+import useLocalStorageState from 'use-local-storage-state'
+
 type Props = {
   module: ModuleType;
   inputs: string[];
 };
 
 function TableRowWrapper({ module, inputs }: Props) {
-  const [T1, setT1] = useState<string | undefined>();
-  const [T2, setT2] = useState<string | undefined>();
-  const [T3, setT3] = useState<string | undefined>();
-  const [TP, setTP] = useState<string | undefined>();
-  const [Moyenne, setMoyenne] = useState<string>();
-  const [MoyenneCoeff, setMoyenneCoeff] = useState<string>();
+  const [T1, setT1] = useLocalStorageState<string | undefined>(`T1${module.name}${module.year}`);
+  const [T2, setT2] = useLocalStorageState<string | undefined>(`T2${module.name}${module.year}`);
+  const [T3, setT3] = useLocalStorageState<string | undefined>(`T3${module.name}${module.year}`);
+  const [TP, setTP] = useLocalStorageState<string | undefined>(`T4${module.name}${module.year}`);
+  const [Moyenne, setMoyenne] = useLocalStorageState<string>(`moyenne${module.name}${module.year}`);
+  const [MoyenneCoeff, setMoyenneCoeff] = useLocalStorageState<string>(`moyenneCoeff${module.name}${module.year}`);
   const { changeTableModules, tableModules } = useMainContext();
   const calculateMoyenne = () => {
     const t1 = T1 ? +T1 : undefined;

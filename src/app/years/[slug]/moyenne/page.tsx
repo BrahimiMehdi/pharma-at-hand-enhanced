@@ -1,10 +1,17 @@
 import TableRowWrapper from "@/components/TableRow";
-import { getYear } from "@/components/queries";
+import { getYear, getYears } from "@/components/queries";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Moyenne from "@/components/Moyenne";
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Link from "next/link";
+export async function generateStaticParams(){
+  const years =  await getYears();
+  const slugs = years.map((item)=>item.slug)
+  return slugs.map((slug)=>({
+    slug
+  }))
+}
 export default async function Years({ params }: { params: { slug: string } }) {
   const years = await getYear(params.slug);
   const total = years.modules.map((item) => item.coeff).reduce((a, b) => a + b, 0);

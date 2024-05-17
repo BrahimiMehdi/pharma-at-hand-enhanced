@@ -6,7 +6,8 @@ type Props = {
 
 function Moyenne({totalCoeff}: Props) {
     const {tableModules} = useMainContext()
-    const totalMoyenneCoeff = tableModules.map((item)=>item.moycoeff).reduce((a,b)=>a+b,0) | 0
+    const moyenCoeff = tableModules.map((item)=>item.moycoeff)
+    const totalMoyenneCoeff = moyenCoeff.reduce((a,b)=>a+b,0) || 0
     const final = (totalMoyenneCoeff/totalCoeff).toFixed(2)
   return (
     <div className="flex flex-col gap-y-8">

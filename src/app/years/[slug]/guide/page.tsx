@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { getYear } from "@/components/queries";
+import { getYear, getYears } from "@/components/queries";
 import { FolderOpen, ArrowRightCircle, ArrowLeft } from "lucide-react";
 import ArticleDetails from "@/components/Articles/ArticleDetails";
+export async function generateStaticParams(){
+  const years =  await getYears();
+  const slugs = years.map((item)=>item.slug)
+  return slugs.map((slug)=>({
+    slug
+  }))
+}
 export default async function Years({ params }: { params: { slug: string } }) {
   const { guide } = await getYear(params.slug);
   return (

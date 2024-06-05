@@ -11,7 +11,7 @@ export default async function Years({
   searchParams: any;
 }) {
   const years = await getYear(params.slug);
-  const modules = years.modules.filter((module) => module.video.length !== 0);
+  const modules = years.modules.filter((module) => module.video.length !== 0 || module.cours.length!==0);
   const filteredModules = modules.filter((module) => module.name === searchParams.name);
 
   const name: string | undefined = searchParams.name;
@@ -31,7 +31,6 @@ export default async function Years({
         <h1>No resources found</h1>
       )}
 
-      {/* <iframe src="https://drive.google.com/embeddedfolderview?id=1-0XNtD_MwS5pocD9j0qkJ6-huon76b1u#list" className="w-full h-96" /> */}
     </main>
   );
 }

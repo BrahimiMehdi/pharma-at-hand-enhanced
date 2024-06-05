@@ -87,10 +87,20 @@ export const getYear = async (slug: string) => {
           }
           name
           tp
+          cours{
+            name
+            video{
+              name
+              link
+              isEnglish
+              isWeb
+            }
+          }
           video {
             name
             link
             isEnglish
+            isWeb
           }
           image {
             height

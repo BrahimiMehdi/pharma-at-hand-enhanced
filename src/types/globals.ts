@@ -28,17 +28,23 @@ type ArticleType = {
   content: any;
   author: AuthorType;
 };
+type VideoType={
+  name: string;
+  link: string;
+  isEnglish: boolean;
+  isWeb:boolean;
+}
 type ModuleType = {
   name: string;
   coeff: number;
   image: ImageType;
   year: YearType;
   tp: boolean;
-  video: {
-    name: string;
-    link: string;
-    isEnglish: boolean;
+  cours:{
+    name:string;
+    video:VideoType[]
   }[];
+  video: VideoType[];
   color: {
     hex: string;
   };

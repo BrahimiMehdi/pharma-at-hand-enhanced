@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getYears,getPrayers } from "@/components/queries";
 import DrivesCard from "@/components/DrivesCard";
 import PrayerCarousel from "@/components/PrayerCarousel";

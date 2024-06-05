@@ -52,7 +52,7 @@ function ModuleSection({ module }: Props) {
       ))}
       {module.video.length !== 0 && (
         <div className="flex justify-center mt-12 border-t py-8 border-t-secondary  flex-col gap-y-2">
-          <h2 className="font-bold  text-2xl">No category</h2>
+          <h2 className="font-bold  text-2xl">Playlists</h2>
           <div className="grid  gap-8 mt-4 [grid-template-columns:_repeat(_auto-fill,_minmax(14rem,_1fr));] sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
             {module.video.map((video, index) => (
               <a

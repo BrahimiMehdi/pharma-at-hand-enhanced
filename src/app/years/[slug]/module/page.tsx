@@ -4,13 +4,6 @@ import ModuleSection from "@/components/ModuleSection";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
-export async function generateStaticParams(){
-  const years =  await getYears();
-  const slugs = years.map((item)=>item.slug)
-  return slugs.map((slug)=>({
-    slug
-  }))
-}
 export default async function Years({
   params,
   searchParams,

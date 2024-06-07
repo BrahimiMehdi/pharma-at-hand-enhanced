@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getYears,getDepartements } from "@/components/queries";
 import DrivesSection from "@/components/DrivesSection";
+
 export async function generateStaticParams(){
   const years =  await getYears();
   const slugs = years.map((item)=>item.slug)

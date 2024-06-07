@@ -9,7 +9,7 @@ type Props = {
 
 function ArticleDetails({article}: Props) {
   return (
-    <article className="flex  w-full max-w-5xl flex-col gap-y-8">
+    <article className="flex prose  w-full max-w-5xl flex-col gap-y-8">
         <Image
           className="w-full rounded-lg h-72 lg:h-96 object-cover"
           alt={article.title}

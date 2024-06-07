@@ -1,4 +1,3 @@
-export const revalidate = 3600
 import NavLayout from "@/components/Nav/NavLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { constructeMetadata } from "@/lib/utils";
@@ -6,6 +5,7 @@ import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import { MainContextProvider } from "./context/MainContext";
 import "./globals.css";
+export const dynamic = "force-static"
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
 
 export const metadata = constructeMetadata()

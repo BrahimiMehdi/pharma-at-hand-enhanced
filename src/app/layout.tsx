@@ -5,9 +5,8 @@ import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import { MainContextProvider } from "./context/MainContext";
 import "./globals.css";
-export const dynamic = "force-static"
 const montserrat = Montserrat({ subsets: ["cyrillic"] });
-
+export const revalidate = 86400
 export const metadata = constructeMetadata()
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

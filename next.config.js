@@ -13,7 +13,12 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["media.graphassets.com"],
+       remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.graphassets.com',
+      },
+    ],
   },
   experimental: {
     workerThreads: false,

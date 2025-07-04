@@ -16,7 +16,7 @@ function AuthorCard({author,bg}: Props) {
           height={author.photo.height}
         />
         <div className="flex flex-col justify-center gap-y-2">
-          <p className="font-semibold  mt-0">{author.name}</p>
+          <p className="font-semibold dark:text-foreground mt-0">{author.name}</p>
           <p className={`italic text-xs  mt-0 ${bg ? "text-background dark:text-foreground" : " text-muted-foreground"}`}>{author.description}</p>
         </div>
       </div>

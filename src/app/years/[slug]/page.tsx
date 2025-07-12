@@ -1,6 +1,6 @@
 import { getYear } from "@/components/queries";
 import { buttonVariants } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Book, BookMarked, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getYears,getDepartements } from "@/components/queries";
@@ -45,8 +45,8 @@ export default async function Years({ params,searchParams }: { params: { slug: s
               className={` border shadow-sm hover:border-primary  transition-all duration-300 ease-in-out hover:-translate-y-2 rounded-lg p-4 flex items-center justify-between`}
             >
               <h2 className="font-bold mt-2 text-lg">{module.name}</h2>
-              <div style={{backgroundColor:module.color.hex}} className="rounded-md max-h-10 p-1  h-full aspect-square">
-                <Image src={module.image.url} alt={module.name} width={module.image.width} height={module.image.height} />
+              <div style={{backgroundColor:module.color.hex}} className="rounded-md grid place-items-center max-h-10 p-1  h-full aspect-square">
+                <BookMarked className="w-6 h-6 text-stone-900" /> 
               </div>
              
             </Link>

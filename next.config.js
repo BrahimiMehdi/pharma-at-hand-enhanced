@@ -19,6 +19,8 @@ const nextConfig = {
         hostname: '**.graphassets.com',
       },
     ],
+   
+    unoptimized: true,
   },
   experimental: {
     workerThreads: false,

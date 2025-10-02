@@ -28,9 +28,9 @@ export default async function Home() {
           <div className="flex flex-col gap-1">
             <h3 className="font-bold text-xl">Pharma At Hand</h3>
             <p className="text-white/90">
-              Developed and maintained by{" "}
+              Founded and maintained by{" "}
               <a href="https://www.instagram.com/brahimi__mehdi/" className="font-semibold underline hover:text-blue-200 transition-colors" target="_blank" rel="noopener noreferrer">
-                Brahimi Mehdi
+                Dr. Brahimi Mehdi
               </a>
             </p>
             <p className="text-sm text-white/80">Pharmacy student platform • Est. 2023</p>

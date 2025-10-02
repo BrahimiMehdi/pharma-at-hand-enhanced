@@ -23,7 +23,7 @@ export default async function Years({ params,searchParams }: { params: { slug: s
      <Link aria-label="history-back" href={`/`} className={buttonVariants({size:"icon",variant:"secondary"})}>
      <ArrowLeft strokeWidth={1.2} size={"28px"} />
      </Link>
-      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-6 rounded-2xl px-6 bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg text-white">
+      <div className="w-full mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 py-6 rounded-2xl px-6 bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg text-white">
           <div className="flex flex-col gap-1">
             <h3 className="font-bold text-xl">Pharma At Hand</h3>
             <p className="text-white/90">

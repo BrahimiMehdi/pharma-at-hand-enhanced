@@ -16,7 +16,6 @@ export async function generateStaticParams(){
 export default async function Years({ params,searchParams }: { params: { slug: string },searchParams:any }) {
   const years = await getYear(params.slug);
   const deps = await getDepartements();
-  
   return (
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between px-6 lg:px-12 p-24">
       <div className="w-full mb-6">

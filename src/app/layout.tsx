@@ -25,7 +25,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         <ThemeProvider attribute="class" disableTransitionOnChange defaultTheme="system">
           <MainContextProvider>
-            <NavLayout>{children}</NavLayout>
+            <NavLayout>
+              {children}</NavLayout>
             <Toaster />
           </MainContextProvider>
         </ThemeProvider>

@@ -28,7 +28,7 @@ export default async function Years({ params,searchParams }: { params: { slug: s
             <p className="text-white/90">
               Founded and maintained by{" "}
               <a href="https://www.instagram.com/brahimi__mehdi/" className="font-semibold underline hover:text-blue-200 transition-colors" target="_blank" rel="noopener noreferrer">
-                Dr. Brahimi Mehdi
+                 Brahimi Mehdi
               </a>
             </p>
             <p className="text-sm text-white/80">Pharmacy student platform • Est. 2023</p>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { contactSchema } from "@/lib/contact-schema";
+import { TOPIC_LABELS, contactSchema } from "@/lib/contact-schema";
 
 const MAX_BODY_BYTES = 10_000;
 const RATE_LIMIT = 5;
@@ -69,7 +69,13 @@ export async function POST(request: Request) {
   }
 
   const parsed = contactSchema.safeParse(body);
-  if (!parsed.success) return error("Invalid form data", 400);
+  if (!parsed.success) {
+    // Same schema as the client, so this only triggers for tampered or scripted requests.
+    return NextResponse.json(
+      { ok: false, error: "Invalid form data", fields: parsed.error.flatten().fieldErrors },
+      { status: 400 }
+    );
+  }
 
   const sheetApi = process.env.SHEET_API;
   if (!sheetApi) {
@@ -77,7 +83,7 @@ export async function POST(request: Request) {
     return error("Service unavailable", 503);
   }
 
-  const { name, email, message } = parsed.data;
+  const { topic, name, email, message } = parsed.data;
   try {
     // The action is fixed server-side; clients can no longer choose which sheet action runs.
     const url = new URL(sheetApi);
@@ -89,7 +95,7 @@ export async function POST(request: Request) {
         action: "addContact",
         name: neutralizeFormula(name),
         email: neutralizeFormula(email),
-        message: neutralizeFormula(message),
+        message: neutralizeFormula(`[${TOPIC_LABELS[topic]}] ${message}`),
       }),
       signal: AbortSignal.timeout(8000),
       cache: "no-store",

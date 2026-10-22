@@ -1,26 +1,34 @@
-import React from 'react'
-import Image from 'next/image'
 type Props = {
-    author:AuthorType;
-    bg?:boolean
-}
+  author: AuthorType;
+  size?: "sm" | "md";
+};
 
-function AuthorCard({author,bg}: Props) {
+function AuthorCard({ author, size = "md" }: Props) {
+  const avatar = size === "sm" ? "h-8 w-8" : "h-10 w-10";
   return (
-    <div className="flex items-center w-full gap-x-4">
-        <Image
-        className={`w-16 ${bg ? "bg-background dark:bg-foreground" :"bg-transparent"} rounded-full object-contain border p-1 aspect-square`}
-          alt={author.name}
+    <div className="flex min-w-0 items-center gap-3">
+      {author.photo?.url ? (
+        <img
           src={author.photo.url}
-          width={author.photo.width}
-          height={author.photo.height}
+          alt=""
+          width={40}
+          height={40}
+          loading="lazy"
+          className={`${avatar} shrink-0 rounded-full border bg-white object-contain p-0.5`}
         />
-        <div className="flex flex-col justify-center gap-y-2">
-          <p className="font-semibold dark:text-foreground mt-0">{author.name}</p>
-          <p className={`italic text-xs  mt-0 ${bg ? "text-background dark:text-foreground" : " text-muted-foreground"}`}>{author.description}</p>
-        </div>
+      ) : (
+        <span className={`${avatar} grid shrink-0 place-items-center rounded-full bg-muted text-sm font-semibold`}>
+          {author.name.slice(0, 1)}
+        </span>
+      )}
+      <div className="min-w-0 leading-tight">
+        <p className="truncate text-sm font-semibold text-foreground">{author.name}</p>
+        {author.description && size === "md" && (
+          <p className="truncate text-xs text-muted-foreground">{author.description}</p>
+        )}
       </div>
-  )
+    </div>
+  );
 }
 
-export default AuthorCard
+export default AuthorCard;

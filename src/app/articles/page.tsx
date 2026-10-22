@@ -1,30 +1,38 @@
 import ArticleCard from "@/components/Articles/ArticleCard";
+import PageHeader from "@/components/PageHeader";
 import { getArticles } from "@/components/queries";
-import { buttonVariants } from "@/components/ui/button";
 import { constructeMetadata } from "@/lib/utils";
-import { ArrowLeft } from "@/components/icons";
-import Link from "next/link";
+
 export const metadata = constructeMetadata({
   title: "Pharma at hand - articles",
   description: "Learn and find out interesting things about pharmacy",
 });
+
 export default async function Articles() {
   const articles = await getArticles();
+  const [featured, ...rest] = articles;
+
   return (
-    <main className="flex bg-background min-h-screen relative flex-col items-center justify-between lg:px-12 px-6 p-24">
-      <div className="w-full mb-6">
-        <Link aria-label="history-back" href={`/`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
-          <ArrowLeft size={28} />
-        </Link>
-      </div>
-      <section className="flex w-full flex-col gap-y-8">
-        <h1 className="text-2xl font-bold">Articles</h1>
-        <div className="grid gap-8 [grid-template-columns:_repeat(_auto-fill,_minmax(18rem,_1fr));]">
-          {articles.map((article, index) => (
-            <ArticleCard key={index} article={article} />
-          ))}
-        </div>
-      </section>
+    <main className="flex min-h-screen w-full flex-col gap-10 bg-background px-6 pb-16 pt-24 lg:px-12">
+      <PageHeader
+        crumbs={[{ label: "Articles" }]}
+        title="Articles"
+        subtitle="Guides and stories from students and associations, year by year."
+      />
+      {featured ? (
+        <section className="flex flex-col gap-6">
+          <ArticleCard article={featured} featured />
+          {rest.length !== 0 && (
+            <div className="grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(18rem,1fr))]">
+              {rest.map((article) => (
+                <ArticleCard key={article.slug} article={article} />
+              ))}
+            </div>
+          )}
+        </section>
+      ) : (
+        <p className="text-muted-foreground">No articles yet.</p>
+      )}
     </main>
   );
 }

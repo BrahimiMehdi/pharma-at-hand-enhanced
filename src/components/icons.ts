@@ -51,3 +51,16 @@ export { ClockCounterClockwise } from "@phosphor-icons/react/dist/ssr/ClockCount
 export { Star } from "@phosphor-icons/react/dist/ssr/Star";
 export { Sparkle } from "@phosphor-icons/react/dist/ssr/Sparkle";
 export { Books } from "@phosphor-icons/react/dist/ssr/Books";
+export { PaperPlaneTilt } from "@phosphor-icons/react/dist/ssr/PaperPlaneTilt";
+export { CircleNotch } from "@phosphor-icons/react/dist/ssr/CircleNotch";
+export { Lightbulb } from "@phosphor-icons/react/dist/ssr/Lightbulb";
+export { LinkBreak } from "@phosphor-icons/react/dist/ssr/LinkBreak";
+export { Handshake } from "@phosphor-icons/react/dist/ssr/Handshake";
+export { ChatCircleDots } from "@phosphor-icons/react/dist/ssr/ChatCircleDots";
+export { Copy } from "@phosphor-icons/react/dist/ssr/Copy";
+export { Clock } from "@phosphor-icons/react/dist/ssr/Clock";
+export { User } from "@phosphor-icons/react/dist/ssr/User";
+export { Quotes } from "@phosphor-icons/react/dist/ssr/Quotes";
+export { ListBullets } from "@phosphor-icons/react/dist/ssr/ListBullets";
+export { Envelope } from "@phosphor-icons/react/dist/ssr/Envelope";
+export { CaretLeft } from "@phosphor-icons/react/dist/ssr/CaretLeft";

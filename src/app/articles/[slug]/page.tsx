@@ -1,8 +1,6 @@
 import { getArticle, getArticles } from "@/components/queries";
 import ArticleDetails from "@/components/Articles/ArticleDetails";
-import { buttonVariants } from "@/components/ui/button";
-import { ArrowLeft } from "@/components/icons";
-import Link from "next/link";
+import PageHeader from "@/components/PageHeader";
 import { Metadata, ResolvingMetadata } from "next";
 import { constructeMetadata } from "@/lib/utils";
 type Props = {
@@ -35,12 +33,8 @@ export default async function Articles({ params }: Props) {
   const article = await getArticle(slug);
 
   return (
-    <main className="flex bg-background min-h-screen relative flex-col items-start px-6 lg:px-12  p-12">
-      <div className="w-full mt-12 lg:mb-6 max-w-5xl mb-6">
-        <Link aria-label="history-back" href={`/articles`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
-          <ArrowLeft size={28} />
-        </Link>
-      </div>
+    <main className="flex min-h-screen w-full flex-col gap-8 bg-background px-6 pb-16 pt-24 lg:px-12">
+      <PageHeader crumbs={[{ label: "Articles", href: "/articles" }, { label: article.title }]} />
       <ArticleDetails article={article} />
     </main>
   );

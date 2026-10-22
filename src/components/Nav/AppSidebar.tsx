@@ -35,6 +35,7 @@ import {
   SidebarSeparator,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 export type YearLink = { slug: string; title: string };
@@ -118,39 +119,48 @@ function YearSwitcher({ years, pathName, yearSlug }: Props) {
   );
 }
 
+const iconButtonClass =
+  "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sidebar-foreground/65 outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring";
+
+/** Icon-only control with a tooltip; tooltips sit above when expanded and to the right on the rail. */
+function IconControl({ label, children }: { label: string; children: React.ReactElement }) {
+  const { state, isMobile } = useSidebar();
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipContent side={state === "collapsed" && !isMobile ? "right" : "top"}>{label}</TooltipContent>
+    </Tooltip>
+  );
+}
+
 function ThemeButton() {
   const { resolvedTheme, setTheme } = useTheme();
   const label = resolvedTheme === "dark" ? "Mode clair" : "Mode sombre";
   return (
-    <SidebarMenuButton
-      tooltip={label}
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      aria-label={label}
-    >
-      <Moon size={20} weight="duotone" aria-hidden className="dark:hidden" />
-      <Sun size={20} weight="duotone" aria-hidden className="hidden dark:block" />
-      <span>
-        <span className="dark:hidden">Mode sombre</span>
-        <span className="hidden dark:inline">Mode clair</span>
-      </span>
-    </SidebarMenuButton>
+    <IconControl label={label}>
+      <button
+        type="button"
+        aria-label={label}
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        className={iconButtonClass}
+      >
+        <Moon size={20} weight="duotone" aria-hidden className="dark:hidden" />
+        <Sun size={20} weight="duotone" aria-hidden className="hidden dark:block" />
+      </button>
+    </IconControl>
   );
 }
 
 function CollapseButton() {
   const { state, toggleSidebar, isMobile } = useSidebar();
   if (isMobile) return null;
-  const label = state === "expanded" ? "Réduire le menu" : "Agrandir le menu";
+  const label = state === "expanded" ? "Réduire le menu (Ctrl B)" : "Agrandir le menu (Ctrl B)";
   return (
-    <SidebarMenuButton tooltip={label} onClick={toggleSidebar} aria-label={`${label} (Ctrl + B)`}>
-      <SidebarSimple size={20} weight="duotone" aria-hidden />
-      <span className="flex flex-1 items-center justify-between">
-        {label}
-        <kbd className="rounded border border-sidebar-border bg-background px-1.5 font-sans text-[10px] font-medium text-sidebar-foreground/60">
-          Ctrl B
-        </kbd>
-      </span>
-    </SidebarMenuButton>
+    <IconControl label={label}>
+      <button type="button" aria-label={label} onClick={toggleSidebar} className={iconButtonClass}>
+        <SidebarSimple size={20} weight="duotone" aria-hidden />
+      </button>
+    </IconControl>
   );
 }
 
@@ -234,35 +244,22 @@ export function AppSidebar({ pathName, years, yearSlug }: Props) {
       </SidebarContent>
 
       <SidebarSeparator />
-      <SidebarFooter className="pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <ThemeButton />
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <CollapseButton />
-          </SidebarMenuItem>
-        </SidebarMenu>
-        <div className="flex items-center gap-1 px-1 group-data-[collapsible=icon]:hidden">
-          <a
-            href="https://www.instagram.com/pharma.at.hand/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-sidebar-foreground/60 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
-          >
-            <InstagramLogo size={20} weight="duotone" />
-          </a>
-          <a
-            href="https://t.me/pharma_at_hand"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Telegram"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-sidebar-foreground/60 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
-          >
-            <TelegramLogo size={20} weight="duotone" />
-          </a>
-          <span className="ml-auto pr-1 text-[11px] text-sidebar-foreground/50">@pharma.at.hand</span>
+      <SidebarFooter className="flex-row items-center gap-1 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] group-data-[collapsible=icon]:flex-col">
+        <div className="flex items-center gap-1 group-data-[collapsible=icon]:hidden">
+          <IconControl label="Instagram @pharma.at.hand">
+            <a href="https://www.instagram.com/pharma.at.hand/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={iconButtonClass}>
+              <InstagramLogo size={20} weight="duotone" />
+            </a>
+          </IconControl>
+          <IconControl label="Telegram">
+            <a href="https://t.me/pharma_at_hand" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className={iconButtonClass}>
+              <TelegramLogo size={20} weight="duotone" />
+            </a>
+          </IconControl>
+        </div>
+        <div className="ml-auto flex items-center gap-1 group-data-[collapsible=icon]:ml-0 group-data-[collapsible=icon]:flex-col">
+          <ThemeButton />
+          <CollapseButton />
         </div>
       </SidebarFooter>
       </nav>

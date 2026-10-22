@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import client from "@/lib/client";
+import { request } from "@/lib/client";
 import { EventType } from "react-hook-form";
 
 export const getYears = async () => {
@@ -20,21 +20,13 @@ export const getYears = async () => {
       }
     }
   `;
-  const { years } = await client.request<{ years: YearType[] }>(query);
+  const { years } = await request<{ years: YearType[] }>(query);
   return years;
 };
-/** Slug and title only, for the sidebar year switcher. */
+/** Slug and title only, for the sidebar year switcher. Reuses the cached years query. */
 export const getYearLinks = async () => {
-  const query = gql`
-    query YearLinks {
-      years {
-        slug
-        title
-      }
-    }
-  `;
-  const { years } = await client.request<{ years: Pick<YearType, "slug" | "title">[] }>(query);
-  return years;
+  const years = await getYears();
+  return years.map(({ slug, title }) => ({ slug, title }));
 };
 export const getPrayers = async () => {
   const query = gql`
@@ -44,7 +36,7 @@ export const getPrayers = async () => {
       }
     }
   `;
-  const { prayers } = await client.request<{ prayers: Prayer[] }>(query);
+  const { prayers } = await request<{ prayers: Prayer[] }>(query);
   return prayers;
 };
 export const getDepartements = async () => {
@@ -57,7 +49,7 @@ export const getDepartements = async () => {
       }
     
   `;
-  const { departements } = await client.request<{ departements: DepartmentType[] }>(query);
+  const { departements } = await request<{ departements: DepartmentType[] }>(query);
   return departements;
 };
 export const getClubs = async () => {
@@ -76,7 +68,7 @@ export const getClubs = async () => {
       }
     }
   `;
-  const { clubs } = await client.request<{ clubs: ClubType[] }>(query);
+  const { clubs } = await request<{ clubs: ClubType[] }>(query);
   return clubs;
 };
 export const getYear = async (slug: string) => {
@@ -148,7 +140,7 @@ export const getYear = async (slug: string) => {
       }
     }
   `;
-  const { years } = await client.request<{ years: YearType[] }>(query, { slug: slug });
+  const { years } = await request<{ years: YearType[] }>(query, { slug: slug });
   return years[0];
 };
 export const getArticles = async () => {
@@ -179,7 +171,7 @@ export const getArticles = async () => {
       }
     }
   `;
-  const { articles } = await client.request<{ articles: ArticleType[] }>(query);
+  const { articles } = await request<{ articles: ArticleType[] }>(query);
   return articles;
 };
 export const getEvents = async () => {
@@ -233,7 +225,7 @@ export const getEvents = async () => {
       }
     }
   `;
-  const { past, upcoming } = await client.request<{ past: EventsType[]; upcoming: EventsType[] }>(query);
+  const { past, upcoming } = await request<{ past: EventsType[]; upcoming: EventsType[] }>(query);
   return { past, upcoming };
 };
 export const getArticle = async (slug: string) => {
@@ -264,6 +256,6 @@ export const getArticle = async (slug: string) => {
       }
     }
   `;
-  const { articles } = await client.request<{ articles: ArticleType[] }>(query, { slug: slug });
+  const { articles } = await request<{ articles: ArticleType[] }>(query, { slug: slug });
   return articles[0];
 };

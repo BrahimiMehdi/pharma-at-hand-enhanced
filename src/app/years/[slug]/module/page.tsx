@@ -1,37 +1,20 @@
-import { getYear, getYears } from "@/components/queries";
-import { ArrowLeft } from "lucide-react";
-import ModuleSection from "@/components/ModuleSection";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Suspense } from "react";
+import { getYear } from "@/components/queries";
+import ModuleBrowser, { ModuleHeaderFallback } from "@/components/videos/ModuleBrowser";
+import { countVideos } from "@/lib/video";
 
-export default async function Years({
-  params,
-  searchParams,
-}: {
-  params: { slug: string; query: any };
-  searchParams: any;
-}) {
-  const years = await getYear(params.slug);
-  const modules = years.modules.filter((module) => module.video.length !== 0 || module.cours.length!==0);
-  const filteredModules = modules.filter((module) => module.name === searchParams.name);
+export default async function ModulePage(props: { params: Promise<{ slug: string }> }) {
+  const { slug } = await props.params;
+  const year = await getYear(slug);
+  const modules = year.modules.filter((module) => countVideos(module) !== 0);
 
-  const name: string | undefined = searchParams.name;
   return (
-    <main className="flex bg-background min-h-screen relative flex-col items-center gap-y-16 px-6 lg:px-12 p-24">
-      <div className="w-full">
-        <Link aria-label="history-back" href={`/years/${params.slug}`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
-          <ArrowLeft strokeWidth={1.2} size={"28px"} />
-        </Link>
-      </div>
-      {filteredModules.length === 0 && !name && <h1>No resources found</h1>}
-      {filteredModules.length !== 0 ? (
-        filteredModules?.map((module, index) => <ModuleSection  key={index} module={module} />)
-      ) : !name ? (
-        modules.map((module, index) => <ModuleSection  key={index} module={module} />)
-      ) : (
-        <h1>No resources found</h1>
-      )}
-
+    <main className="flex min-h-screen w-full flex-col bg-background px-6 pb-16 pt-24 lg:px-12">
+      <Suspense
+        fallback={<ModuleHeaderFallback slug={slug} yearTitle={year.title} />}
+      >
+        <ModuleBrowser slug={slug} yearTitle={year.title} modules={modules} />
+      </Suspense>
     </main>
   );
 }

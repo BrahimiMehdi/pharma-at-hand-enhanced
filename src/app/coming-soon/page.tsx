@@ -1,13 +1,13 @@
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@/components/icons";
 export default async function ComingSoon() {
   
     return (
         <main className="flex bg-background gap-y-8 min-h-screen relative flex-col items-center justify-center px-12 ">
     <div className="w-full mb-6 mt-8">
     <Link aria-label="history-back" href={"/"} className={buttonVariants({ size: "icon", variant: "secondary" })}>
-          <ArrowLeft strokeWidth={1.2} size={"28px"} />
+          <ArrowLeft size={28} />
         </Link>
     </div>
           

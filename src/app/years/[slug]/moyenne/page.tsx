@@ -1,51 +1,47 @@
-import TableRowWrapper from "@/components/TableRow";
+import Calculator from "@/components/moyenne/Calculator";
 import { getYear, getYears } from "@/components/queries";
-import { buttonVariants } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import Moyenne from "@/components/Moyenne";
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import Link from "next/link";
-export async function generateStaticParams(){
-  const years =  await getYears();
-  const slugs = years.map((item)=>item.slug)
-  return slugs.map((slug)=>({
-    slug
-  }))
-}
-export default async function Years({ params }: { params: { slug: string } }) {
-  const years = await getYear(params.slug);
-  const total = years.modules.map((item) => item.coeff).reduce((a, b) => a + b, 0);
-  const modules = years.modules;
-  const heads = ["Module", "T1", "T2", "T3", "TP/TD", "Coeff", "Moyenne", "Moy*Coeff"];
-  const inputs = ["T1", "T2", "T3", "T3"];
-  return (
-    <main className="flex bg-background min-h-screen gap-y-16 relative flex-col lg:items-start items-center px-6 lg:px-12 p-24">
-      <div className="w-full mb-6">
-        <Link aria-label="history-back" href={`/years/${params.slug}`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
-          <ArrowLeft strokeWidth={1.2} size={"28px"} />
-        </Link>
-      </div>
-      <h1 className="text-2xl font-bold">Calcul de la moyenne</h1>
+import PageHeader from "@/components/PageHeader";
+import { constructeMetadata } from "@/lib/utils";
 
-      {modules.length !==0 ? <>
-        <Table>
-        <TableHeader>
-          <TableRow>
-            {heads.map((item,index) => (
-              <TableHead key={index} className="text-center">{item}</TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {modules.map((item, index) => (
-            <TableRowWrapper module={item} key={index} inputs={inputs} />
-          ))}
-        </TableBody>
-      </Table>
-      <Moyenne totalCoeff={total} />
-      </> : <p className="text-lg text-muted-foreground">
-        No modules found
-        </p>}
+export async function generateStaticParams() {
+  const years = await getYears();
+  return years.map((item) => ({ slug: item.slug }));
+}
+
+type PageProps = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const year = await getYear(slug);
+  return constructeMetadata({
+    title: `Calcul de la moyenne - ${year.title} | Pharma at hand`,
+    description: `Calculez votre moyenne de ${year.title} en pharmacie : notes T1, T2, T3 et TP, coefficients et moyenne générale en direct.`,
+  });
+}
+
+export default async function MoyennePage({ params }: PageProps) {
+  const { slug } = await params;
+  const year = await getYear(slug);
+  const modules = year.modules;
+  const totalCoeff = modules.reduce((sum, item) => sum + item.coeff, 0);
+
+  return (
+    <main className="flex min-h-screen w-full flex-col bg-background px-6 pb-16 pt-24 lg:px-12">
+      <div className="mb-8">
+        <PageHeader
+          crumbs={[{ label: year.title, href: `/years/${slug}` }, { label: "Calcul de la moyenne" }]}
+          title="Calcul de la moyenne"
+          subtitle={
+            modules.length !== 0 ? `${year.title} · ${modules.length} modules · coefficient total ${totalCoeff}` : year.title
+          }
+        />
+      </div>
+
+      {modules.length !== 0 ? (
+        <Calculator modules={modules} />
+      ) : (
+        <p className="text-lg text-muted-foreground">Aucun module disponible pour cette année pour le moment.</p>
+      )}
     </main>
   );
 }

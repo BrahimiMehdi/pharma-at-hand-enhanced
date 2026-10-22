@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "@/components/icons";
 type Props = {
   prayers: Prayer[];
 };
@@ -27,7 +27,7 @@ const PrayerCarousel = ({ prayers }: Props) => {
       <div className="w-7 h-7 sm:block hidden aspect-square  mt-6 lg:mb-6  mb-6">
         {index !== 0 && (
           <Button aria-label="prayer-back" size={"icon"} variant={"secondary"} onClick={() => handleClick("reduce")}>
-            <ArrowLeft strokeWidth={1.2} size={"28px"} />
+            <ArrowLeft size={28} />
           </Button>
         )}
       </div>
@@ -37,7 +37,7 @@ const PrayerCarousel = ({ prayers }: Props) => {
       <div className="w-7 h-7 sm:block hidden aspect-square  mt-6 lg:mb-6  mb-6">
         {index !== prayers.length - 1 && (
           <Button aria-label="prayer-back" size={"icon"} variant={"secondary"} onClick={() => handleClick("add")}>
-            <ArrowRight strokeWidth={1.2} size={"28px"} />
+            <ArrowRight size={28} />
           </Button>
         )}
       </div>
@@ -45,14 +45,14 @@ const PrayerCarousel = ({ prayers }: Props) => {
       <div className="w-7 h-7  aspect-square  mt-6 lg:mb-6  mb-6">
         {index !== 0 && (
           <Button aria-label="prayer-back" size={"icon"} variant={"secondary"} onClick={() => handleClick("reduce")}>
-            <ArrowLeft strokeWidth={1.2} size={"28px"} />
+            <ArrowLeft size={28} />
           </Button>
         )}
       </div>
       <div className="w-7 h-7  aspect-square  mt-6 lg:mb-6  mb-6">
         {index !== prayers.length - 1 && (
           <Button aria-label="prayer-back" size={"icon"} variant={"secondary"} onClick={() => handleClick("add")}>
-            <ArrowRight strokeWidth={1.2} size={"28px"} />
+            <ArrowRight size={28} />
           </Button>
         )}
       </div>

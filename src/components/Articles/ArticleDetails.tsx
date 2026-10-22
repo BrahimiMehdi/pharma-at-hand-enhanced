@@ -1,6 +1,6 @@
 import React from 'react'
 import AuthorCard from "@/components/Articles/AuthorCard";
-import { Instagram } from "lucide-react";
+import { InstagramLogo } from "@/components/icons";
 import Image from "next/image";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 type Props = {
@@ -21,7 +21,7 @@ function ArticleDetails({article}: Props) {
           <AuthorCard author={article.author} />
           {article.author.instagram && (
             <a href={article.author.instagram} target="_blank" rel="noopener noreferrer">
-              <Instagram strokeWidth={1.2} fill="#000" stroke="#fff" size={"42px"} className="mr-2" />
+              <InstagramLogo fill="#000" stroke="#fff" size={42} className="mr-2" />
             </a>
           )}
         </div>

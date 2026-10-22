@@ -23,6 +23,19 @@ export const getYears = async () => {
   const { years } = await client.request<{ years: YearType[] }>(query);
   return years;
 };
+/** Slug and title only, for the sidebar year switcher. */
+export const getYearLinks = async () => {
+  const query = gql`
+    query YearLinks {
+      years {
+        slug
+        title
+      }
+    }
+  `;
+  const { years } = await client.request<{ years: Pick<YearType, "slug" | "title">[] }>(query);
+  return years;
+};
 export const getPrayers = async () => {
   const query = gql`
     query Years {

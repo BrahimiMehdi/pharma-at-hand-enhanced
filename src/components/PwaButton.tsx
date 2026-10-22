@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { Download } from "lucide-react";
+import { DownloadSimple } from "@/components/icons";
 import { usePathname } from "next/navigation";
 
 const PwaButton = () => {
@@ -38,7 +38,7 @@ const PwaButton = () => {
       className="overflow-hidden my-8 lg:max-w-xs"
       onClick={onClick}
     >
-      <Download strokeWidth={1.2} size={"18px"} className="mr-2" />
+      <DownloadSimple size={18} className="mr-2" />
       <span>Install App</span>
     </Button>
   );

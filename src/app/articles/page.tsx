@@ -2,7 +2,7 @@ import ArticleCard from "@/components/Articles/ArticleCard";
 import { getArticles } from "@/components/queries";
 import { buttonVariants } from "@/components/ui/button";
 import { constructeMetadata } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@/components/icons";
 import Link from "next/link";
 export const metadata = constructeMetadata({
   title: "Pharma at hand - articles",
@@ -14,7 +14,7 @@ export default async function Articles() {
     <main className="flex bg-background min-h-screen relative flex-col items-center justify-between lg:px-12 px-6 p-24">
       <div className="w-full mb-6">
         <Link aria-label="history-back" href={`/`} className={buttonVariants({ size: "icon", variant: "secondary" })}>
-          <ArrowLeft strokeWidth={1.2} size={"28px"} />
+          <ArrowLeft size={28} />
         </Link>
       </div>
       <section className="flex w-full flex-col gap-y-8">

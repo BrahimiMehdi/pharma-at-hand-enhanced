@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Calendar, MapPin } from "lucide-react";
+import { CalendarBlank, MapPin } from "@/components/icons";
 import AuthorCard from "./Articles/AuthorCard";
 type Props = {
   card: EventsType;
@@ -44,7 +44,7 @@ function EventUpCard({ card }: Props) {
             {" "}
             <span className="text-primary">
               {" "}
-              <Calendar />{" "}
+              <CalendarBlank />{" "}
             </span>{" "}
             {card.date}
           </p>

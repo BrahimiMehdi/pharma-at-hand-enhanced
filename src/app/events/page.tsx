@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getEvents } from "@/components/queries";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import CardsCarousel from "@/components/CardsCarousel";
 export default async function Home() {
@@ -14,7 +14,7 @@ export default async function Home() {
           href={`/`}
           className={buttonVariants({ size: "icon", variant: "secondary" })}
         >
-          <ArrowLeft strokeWidth={1.2} size={"28px"} />
+          <ArrowLeft size={28} />
         </Link>
       </div>
       <section className="flex w-full flex-col gap-y-8">

@@ -49,16 +49,6 @@ type ModuleType = {
     hex: string;
   };
 };
-type MoyenState = { module: ModuleType; moyenne: number; moycoeff: number };
-interface ColumnType extends ModuleType {
-  T1?: number | string;
-  T2?: number | string;
-  T3?: number | string;
-  TP?: number | string;
-  total: number;
-  moyenne?: number;
-  moycoeff?: number;
-}
 type EventsType = {
   title:string;
   description:string;

@@ -1,107 +1,42 @@
 "use client";
 
-import { Nav } from "./Nav";
-import { Calculator, Menu, Users2 ,BookMarked} from "lucide-react";
-import { useState, useRef, useEffect } from "react";
-import { Button } from "../ui/button";
+import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import { CalendarCheck2, PenSquare, HardDrive, Home, Map } from "lucide-react";
-import {gsap,Power3} from "gsap";
-import { extractFirstSubpath } from "@/lib/utils";
+import { List } from "@/components/icons";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar, type YearLink } from "./AppSidebar";
+
 type Props = {
   children: React.ReactNode;
+  years: YearLink[];
 };
 
-function NavLayout({ children }: Props) {
-  const [open, setOpen] = useState(false);
+function NavLayout({ children, years }: Props) {
   const pathName = usePathname();
-  useEffect(() => {
-
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-      mm.add("(max-width:1024px)", () => {
-        setOpen(false);
-      });
-    });
-    return () => {
-      ctx.revert();
-    };
-  }, [pathName]);
   const { slug } = useParams();
-
-  const current = extractFirstSubpath(pathName);
-  const primaryLinks = ["/", "/articles", "/events","/contact", "/clubs-and-ngo","/prayers"];
-  const NavLinks = () => {
-    if (primaryLinks.includes(current)) {
-      return [
-        {
-          link: "/",
-          icon: <Home strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Home",
-          isActive: true,
-        },
-        {
-          link: "/articles",
-          icon: <PenSquare strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Articles",
-        },
-        {
-          link: "/events",
-          icon: <CalendarCheck2 strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Events",
-        },
-        {
-          link: "/clubs-and-ngo",
-          icon: <Users2 strokeWidth={1.2} size={"20px"} className="mr-2" />,
-          name: "Clubs & NGO's",
-        },
-        {
-          link: "/prayers",
-          icon: <BookMarked strokeWidth={1.2} size={"20px"} className="mr-2" />,
-          name: "Prayers",
-        },
-      ];
-    } else {
-      return [
-        {
-          link: "/",
-          icon: <Home strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Home",
-          isActive: true,
-        },
-        {
-          link: `/years/${slug}`,
-          icon: <HardDrive strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Resources",
-        },
-        {
-          link: `/years/${slug}/guide`,
-          icon: <Map strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Guide",
-        },
-        {
-          link: `/years/${slug}/moyenne`,
-          icon: <Calculator strokeWidth={1.2} size={"18px"} className="mr-2" />,
-          name: "Calcule",
-        },
-      ];
-    }
-  };
+  const yearSlug = pathName.startsWith("/years/") && typeof slug === "string" ? slug : undefined;
 
   return (
-    <div
-      className={`flex relative transition-all duration-300 ease-in-out lg:pl-80 pl-0`}
-    >
-      <Nav pathName={pathName} setOpen={setOpen} open={open} slug={slug} links={NavLinks()} />
-      <div className={`w-full lg:border-l  lg:border-l-secondary`}>
-        <div className="w-full lg:hidden fixed top-0 z-[9] lg:px-12  left-0 pt-8   px-6 ">
-         {!open && <Button aria-label="menu-open" onClick={() => setOpen(!open)} size={"icon"}>
-            <Menu strokeWidth={1.4} size={"24px"} />
-          </Button>}
-        </div>
+    <SidebarProvider>
+      <AppSidebar pathName={pathName} years={years} yearSlug={yearSlug} />
+      <SidebarInset>
+        <header className="fixed inset-x-0 top-0 z-20 flex h-16 items-center gap-3 border-b border-border/60 bg-background/80 px-4 backdrop-blur-md sm:px-6 lg:hidden">
+          <SidebarTrigger
+            variant="default"
+            aria-label="Ouvrir le menu"
+            aria-controls="main-nav"
+            className="h-10 w-10 shadow-[0_4px_12px_-4px_rgba(37,99,235,0.6)]"
+          >
+            <List size={22} weight="bold" />
+          </SidebarTrigger>
+          <Link href="/" className="flex items-center gap-2.5 rounded-md" aria-label="Pharma at Hand, accueil">
+            <img src="/icon-192x192.png" alt="" width={28} height={28} className="h-7 w-7 rounded-lg" />
+            <span className="text-sm font-bold tracking-tight">Pharma at Hand</span>
+          </Link>
+        </header>
         {children}
-      </div>
-    </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import { getClubs } from "@/components/queries";
 import Image from "next/image";
-import { Instagram ,Globe, ArrowLeft} from "lucide-react";
+import { InstagramLogo, Globe, ArrowLeft } from "@/components/icons";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 export default async function Clubs() {
@@ -9,7 +9,7 @@ export default async function Clubs() {
     <main className="flex bg-background min-h-screen relative flex-col items-center gap-y-8 px-6 lg:px-12 p-24">
     <div className="w-full mb-6">
      <Link aria-label="history-back" href={`/`} className={buttonVariants({size:"icon",variant:"secondary"})}>
-     <ArrowLeft strokeWidth={1.2} size={"28px"} />
+     <ArrowLeft size={28} />
      </Link>
      </div>
         <div className="grid w-full gap-8  sm:[grid-template-columns:_repeat(_auto-fill,_minmax(24rem,_1fr));]">
@@ -26,10 +26,10 @@ export default async function Clubs() {
               <p className="text-xs mt-3 text-muted-foreground">{club.description}</p>
               <div className="w-full mt-4 flex gap-x-12 items-center">
                 <a href={club.instagram} target="_blank" rel="noopener noreferrer">
-                <Instagram strokeWidth={1.6}  size={"28px"}  />
+                <InstagramLogo  size={28}  />
                 </a>
                {club.website && <a href={club.website} target="_blank" rel="noopener noreferrer">
-                <Globe strokeWidth={1.6}  size={"28px"}  />
+                <Globe  size={28}  />
                 </a>
                 }
           

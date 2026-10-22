@@ -42,8 +42,7 @@ export function constructeMetadata({
       creator:"@Brahimi_mehdi"
     },
     icons,
-    metadataBase:new URL("https://pharma-at-hand.vercel.app"),
-    themeColor:"#FFF",
+    metadataBase:new URL("https://pharma-at-hand.app"),
     ...(noIndex && {
       robots:{
         index:false,

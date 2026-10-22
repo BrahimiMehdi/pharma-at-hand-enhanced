@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { getPrayers } from "@/components/queries";
 export default async function Prayers() {
@@ -12,7 +12,7 @@ export default async function Prayers() {
           href={`/`}
           className={buttonVariants({ size: "icon", variant: "secondary" })}
         >
-          <ArrowLeft strokeWidth={1.2} size={"28px"} />
+          <ArrowLeft size={28} />
         </Link>
       </div>
       <section className="flex w-full flex-col gap-y-8">
